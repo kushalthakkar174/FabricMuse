@@ -1,0 +1,17 @@
+{
+  "name": "fabricmuse",
+  "version": "1.0.0",
+  "description": "A modern, responsive e-commerce frontend with cart functionality, filtering, and clean UI design.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.5.0",
+    "postcss": "^8.5.10",
+    "tailwindcss": "^3.4.4"
+  }
+}
