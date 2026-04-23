@@ -1,0 +1,1649 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FabricMuse - Fashion Clothes Website</title>
+
+    <!-- Tailwind (CDN for fast dev) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              display: [
+                "ui-sans-serif",
+                "system-ui",
+                "Segoe UI",
+                "Roboto",
+                "Helvetica",
+                "Arial"
+              ]
+            }
+          }
+        },
+        darkMode: "class"
+      };
+    </script>
+
+    <!-- Swiper (brand slider + home sections) -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- Icons -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Your custom css (shared across all pages) -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+
+  <body
+    class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-50 selection:bg-teal-200 selection:text-slate-900"
+  >
+    <!-- Top Announcement Bar -->
+    <div class="w-full bg-slate-900 text-white dark:bg-slate-900">
+      <div
+        class="mx-auto max-w-7xl px-4 py-2 text-xs sm:text-sm flex items-center justify-between gap-3"
+      >
+        <p class="opacity-90">
+          Free delivery above ₹999 • Easy returns • Secure checkout
+        </p>
+        <div class="hidden sm:flex items-center gap-3 opacity-90">
+          <span class="flex items-center gap-1"
+            ><i class="bx bx-phone"></i> +91 8008146642</span
+          >
+          <span class="flex items-center gap-1"
+            ><i class="bx bx-envelope"></i> creativeencode23@yahoo.com</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <header
+      class="sticky top-0 z-50 border-b border-slate-200/60 dark:border-slate-800/70 bg-white/70 dark:bg-slate-950/60 backdrop-blur"
+    >
+      <nav class="mx-auto max-w-7xl px-4">
+        <div class="h-16 flex items-center justify-between gap-3">
+          <!-- Left -->
+          <div class="flex items-center gap-3">
+            <button
+              id="btnMobileMenu"
+              class="md:hidden p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900"
+              aria-label="Open menu"
+            >
+              <i class="bx bx-menu text-2xl"></i>
+            </button>
+
+            <a href="index.html#home" class="flex items-center gap-2">
+              <span
+                class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-teal-500 text-slate-900 font-bold"
+                >FM</span
+              >
+              <span class="font-semibold tracking-wide text-lg"
+                >FabricMuse</span
+              >
+            </a>
+          </div>
+
+          <!-- Center -->
+          <ul class="hidden md:flex items-center gap-6 text-sm font-medium">
+            <li>
+              <a
+                class="hover:text-teal-700 dark:hover:text-teal-300 transition"
+                href="index.html"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                class="hover:text-teal-700 dark:hover:text-teal-300 transition"
+                href="products.html"
+                >Products</a
+              >
+            </li>
+            <li>
+              <a
+                class="hover:text-teal-700 dark:hover:text-teal-300 transition"
+                href="services.html"
+                >Services</a
+              >
+            </li>
+            <li>
+              <a
+                class="hover:text-teal-700 dark:hover:text-teal-300 transition"
+                href="about.html"
+                >About</a
+              >
+            </li>
+            <li>
+              <a
+                class="hover:text-teal-700 dark:hover:text-teal-300 transition"
+                href="contact.html"
+                >Contact</a
+              >
+            </li>
+          </ul>
+
+          <!-- Right -->
+          <div class="flex items-center gap-2">
+            <!-- Search -->
+            <button
+              id="btnSearch"
+              class="p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900"
+              aria-label="Search"
+            >
+              <i class="bx bx-search text-2xl"></i>
+            </button>
+
+            <!-- Dark Mode -->
+            <button
+              id="btnTheme"
+              class="p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900"
+              aria-label="Toggle theme"
+            >
+              <i id="iconTheme" class="bx bx-moon text-2xl"></i>
+            </button>
+
+            <!-- Profile -->
+            <div class="relative">
+              <button
+                id="btnProfile"
+                class="p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900"
+                aria-label="Profile"
+              >
+                <i class="bx bx-user text-2xl"></i>
+              </button>
+
+              <div
+                id="profileMenu"
+                class="hidden absolute right-0 mt-2 w-64 overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 shadow-xl"
+              >
+                <div
+                  class="p-3 border-b border-slate-200 dark:border-slate-800"
+                >
+                  <p id="profileHello" class="text-sm font-semibold">
+                    Welcome 👋
+                  </p>
+                  <p id="profileSub" class="text-xs opacity-70">
+                    Sign in to track orders
+                  </p>
+                </div>
+
+                <a
+                  id="profilePrimaryLink"
+                  class="block px-4 py-3 text-sm hover:bg-slate-100 dark:hover:bg-slate-900"
+                  href="auth.html"
+                >
+                  Login / Register
+                </a>
+
+                <a
+                  id="profileOrdersLink"
+                  class="hidden block px-4 py-3 text-sm hover:bg-slate-100 dark:hover:bg-slate-900"
+                  href="products.html"
+                >
+                  My Orders (Demo)
+                </a>
+
+                <button
+                  id="btnLogout"
+                  class="hidden w-full text-left px-4 py-3 text-sm hover:bg-slate-100 dark:hover:bg-slate-900"
+                >
+                  Logout
+                </button>
+              </div>
+            </div>
+
+            <!-- Cart -->
+            <button
+              id="btnCart"
+              class="relative p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900"
+              aria-label="Cart"
+            >
+              <i class="bx bx-shopping-bag text-2xl"></i>
+              <span
+                id="cartBadge"
+                class="hidden absolute -top-1 -right-1 text-[11px] bg-teal-500 text-slate-900 font-bold rounded-full px-1.5 py-0.5"
+                >0</span
+              >
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Search Panel (global) -->
+      <div
+        id="searchPanel"
+        class="hidden border-t border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-950/60 backdrop-blur"
+      >
+        <div class="mx-auto max-w-7xl px-4 py-4">
+          <div class="flex gap-2">
+            <div class="relative flex-1">
+              <i
+                class="bx bx-search absolute left-3 top-1/2 -translate-y-1/2 opacity-60 text-xl"
+              ></i>
+              <input
+                id="searchInput"
+                class="w-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 px-10 py-3 text-sm outline-none focus:ring-2 focus:ring-teal-400"
+                placeholder="Search products (e.g. Jacket, Suit, Jeans)..."
+              />
+            </div>
+
+            <button
+              id="btnSearchGo"
+              class="px-4 py-3 rounded-2xl bg-slate-900 text-white font-semibold hover:opacity-90"
+            >
+              Search
+            </button>
+
+            <button
+              id="btnSearchClose"
+              class="px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-900"
+            >
+              Close
+            </button>
+          </div>
+
+          <p class="mt-2 text-xs opacity-70">
+            Tip: Search opens <b>Products page</b> with your query and filters.
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Menu Drawer -->
+    <div
+      id="mobileMenuBackdrop"
+      class="hidden fixed inset-0 z-50 bg-black/40"
+    ></div>
+    <aside
+      id="mobileMenu"
+      class="fixed z-50 top-0 left-0 h-full w-[320px] -translate-x-full transition-transform duration-300 bg-white dark:bg-slate-950 border-r border-slate-200 dark:border-slate-800"
+    >
+      <div
+        class="p-4 flex items-center justify-between border-b border-slate-200 dark:border-slate-800"
+      >
+        <div class="flex items-center gap-2">
+          <span
+            class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-teal-500 text-slate-900 font-bold"
+            >FM</span
+          >
+          <span class="font-semibold">FabricMuse</span>
+        </div>
+        <button
+          id="btnMobileClose"
+          class="p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900"
+          aria-label="Close menu"
+        >
+          <i class="bx bx-x text-2xl"></i>
+        </button>
+      </div>
+
+      <div class="p-4 space-y-2 text-sm">
+        <a
+          class="block px-3 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900"
+          href="index.html"
+          >Home</a
+        >
+        <a
+          class="block px-3 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900"
+          href="products.html"
+          >Products</a
+        >
+        <a
+          class="block px-3 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900"
+          href="services.html"
+          >Services</a
+        >
+        <a
+          class="block px-3 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900"
+          href="about.html"
+          >About</a
+        >
+        <a
+          class="block px-3 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900"
+          href="contact.html"
+          >Contact</a
+        >
+
+        <div class="pt-3 border-t border-slate-200 dark:border-slate-800">
+          <button
+            id="btnThemeMobile"
+            class="w-full flex items-center justify-between px-3 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900"
+          >
+            <span class="flex items-center gap-2"
+              ><i class="bx bx-moon text-xl"></i> Theme</span
+            >
+            <span class="text-xs opacity-70">Toggle</span>
+          </button>
+
+          <a
+            id="mobileAuthLink"
+            class="mt-2 w-full block text-center px-3 py-3 rounded-xl bg-slate-900 text-white font-semibold hover:opacity-90"
+            href="auth.html"
+          >
+            Login / Register
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- CART DRAWER (global, works on every page) -->
+    <div id="cartBackdrop" class="hidden fixed inset-0 z-50 bg-black/40"></div>
+    <aside
+      id="cartDrawer"
+      class="fixed z-50 top-0 right-0 h-full w-full sm:w-[420px] translate-x-full transition-transform duration-300 bg-white dark:bg-slate-950 border-l border-slate-200 dark:border-slate-800"
+    >
+      <div
+        class="p-4 flex items-center justify-between border-b border-slate-200 dark:border-slate-800"
+      >
+        <div>
+          <p class="font-semibold text-lg">Your Cart</p>
+          <p class="text-xs opacity-70">Review your items before checkout</p>
+        </div>
+        <button
+          id="btnCartClose"
+          class="p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900"
+          aria-label="Close cart"
+        >
+          <i class="bx bx-x text-2xl"></i>
+        </button>
+      </div>
+
+      <div class="p-4 h-[calc(90%-180px)] overflow-auto no-scrollbar">
+        <div
+          id="cartEmpty"
+          class="rounded-2xl border border-dashed border-slate-300 dark:border-slate-700 p-6 text-center"
+        >
+          <p class="font-semibold">Your cart is empty</p>
+          <p class="text-sm opacity-70 mt-1">
+            Add products from Products page.
+          </p>
+          <a
+            href="products.html"
+            class="mt-4 inline-flex items-center justify-center px-5 py-3 rounded-2xl bg-teal-500 text-slate-900 font-semibold hover:bg-teal-400 transition"
+          >
+            Browse Products
+          </a>
+        </div>
+
+        <div id="cartItems" class="hidden space-y-3"></div>
+      </div>
+
+      <div class="p-4 border-t border-slate-200 dark:border-slate-800">
+        <div class="flex items-center justify-between text-sm">
+          <span class="opacity-70">Subtotal</span>
+          <span id="cartSubtotal" class="font-semibold">$0.00</span>
+        </div>
+        <div class="flex items-center justify-between text-sm mt-2">
+          <span class="opacity-70">Shipping</span>
+          <span class="font-semibold">Free</span>
+        </div>
+
+        <button
+          id="btnCheckout"
+          class="mt-4 w-full rounded-2xl bg-teal-500 text-slate-900 font-semibold py-3 hover:bg-teal-400 transition"
+        >
+          Buy Now
+        </button>
+
+        <p class="mt-2 text-xs opacity-60 text-center">
+          By checking out, you agree to our Terms & Privacy Policy.
+        </p>
+      </div>
+    </aside>
+
+    <!-- HERO -->
+    <section
+      id="home"
+      class="relative h-[92vh] min-h-[620px] w-full overflow-hidden"
+    >
+      <video
+        class="absolute inset-0 h-full w-full object-cover"
+        autoplay
+        muted
+        loop
+        playsinline
+      >
+        <source src="video/video6.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      <div
+        class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/35 to-black/80"
+      ></div>
+
+      <div class="relative mx-auto max-w-7xl px-4 h-full flex items-center">
+        <div class="max-w-2xl text-white">
+          <p
+            class="inline-flex items-center gap-2 text-xs sm:text-sm uppercase tracking-[0.25em] text-white/80"
+          >
+            <span class="h-2 w-2 rounded-full bg-teal-300"></span>
+            New Season Drop
+          </p>
+
+          <h1
+            class="mt-4 text-4xl sm:text-5xl md:text-6xl font-semibold leading-tight"
+          >
+            Aesthetic Fits. <span class="text-teal-300">Clean</span> Comfort.
+          </h1>
+
+          <p class="mt-4 text-base sm:text-lg text-white/85 max-w-xl">
+            Upgrade your wardrobe with premium essentials and statement pieces
+            crafted for everyday confidence.
+          </p>
+
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a
+              href="products.html?gender=male"
+              class="inline-flex items-center justify-center px-6 py-3 rounded-2xl bg-teal-500 text-slate-900 font-semibold hover:bg-teal-400 transition"
+            >
+              Shop Men
+            </a>
+            <a
+              href="products.html?gender=female"
+              class="inline-flex items-center justify-center px-6 py-3 rounded-2xl border border-white/35 text-white font-semibold hover:bg-white/10 transition"
+            >
+              Shop Women
+            </a>
+
+            <button
+              id="btnScrollDown"
+              class="inline-flex items-center justify-center px-6 py-3 rounded-2xl bg-white/10 text-white font-semibold hover:bg-white/15 transition"
+            >
+              Explore <i class="bx bx-down-arrow-alt text-xl ml-1"></i>
+            </button>
+          </div>
+
+          <div class="mt-10 grid grid-cols-2 sm:grid-cols-3 gap-3 max-w-xl">
+            <div class="rounded-2xl bg-white/10 border border-white/15 p-4">
+              <p class="text-sm font-semibold">Premium Quality</p>
+              <p class="text-xs text-white/75 mt-1">
+                Curated fabric & stitching
+              </p>
+            </div>
+            <div class="rounded-2xl bg-white/10 border border-white/15 p-4">
+              <p class="text-sm font-semibold">Free Returns</p>
+              <p class="text-xs text-white/75 mt-1">Easy 7-day return policy</p>
+            </div>
+            <div
+              class="rounded-2xl bg-white/10 border border-white/15 p-4 hidden sm:block"
+            >
+              <p class="text-sm font-semibold">Fast Shipping</p>
+              <p class="text-xs text-white/75 mt-1">Dispatch within 24 hours</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEW: CATEGORY STRIP (Home upgrade #1) -->
+    <section
+      class="py-12 bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800"
+    >
+      <div class="mx-auto max-w-7xl px-4">
+        <div
+          class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4"
+        >
+          <div>
+            <p class="text-xs uppercase tracking-[0.25em] opacity-70">
+              Categories
+            </p>
+            <h2 class="mt-2 text-2xl sm:text-3xl font-semibold">
+              Shop by style, not just by product
+            </h2>
+            <p class="mt-2 text-sm opacity-70 max-w-2xl">
+              Quick entry points into your best-selling vibes. Tap one to jump
+              into filtered products.
+            </p>
+          </div>
+          <a
+            href="products.html"
+            class="inline-flex items-center gap-2 text-sm font-semibold text-teal-700 dark:text-teal-300 hover:opacity-80"
+          >
+            View all products <i class="bx bx-right-arrow-alt text-xl"></i>
+          </a>
+        </div>
+
+        <div class="mt-7 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+          <a
+            href="products.html?style=minimal"
+            class="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/30 p-4 hover:bg-white dark:hover:bg-slate-900 transition"
+          >
+            <div
+              class="h-10 w-10 rounded-2xl bg-teal-500/20 grid place-items-center mb-3"
+            >
+              <i class="bx bx-leaf text-xl"></i>
+            </div>
+            <p class="font-semibold text-sm">Minimal</p>
+            <p class="text-xs opacity-70 mt-1">Essentials</p>
+          </a>
+
+          <a
+            href="products.html?style=street"
+            class="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/30 p-4 hover:bg-white dark:hover:bg-slate-900 transition"
+          >
+            <div
+              class="h-10 w-10 rounded-2xl bg-teal-500/20 grid place-items-center mb-3"
+            >
+              <i class="bx bx-run text-xl"></i>
+            </div>
+            <p class="font-semibold text-sm">Street</p>
+            <p class="text-xs opacity-70 mt-1">Everyday</p>
+          </a>
+
+          <a
+            href="products.html?style=formal"
+            class="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/30 p-4 hover:bg-white dark:hover:bg-slate-900 transition"
+          >
+            <div
+              class="h-10 w-10 rounded-2xl bg-teal-500/20 grid place-items-center mb-3"
+            >
+              <i class="bx bx-briefcase text-xl"></i>
+            </div>
+            <p class="font-semibold text-sm">Formal</p>
+            <p class="text-xs opacity-70 mt-1">Office</p>
+          </a>
+
+          <a
+            href="products.html?style=denim"
+            class="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/30 p-4 hover:bg-white dark:hover:bg-slate-900 transition"
+          >
+            <div
+              class="h-10 w-10 rounded-2xl bg-teal-500/20 grid place-items-center mb-3"
+            >
+              <i class="bx bx-purchase-tag-alt text-xl"></i>
+            </div>
+            <p class="font-semibold text-sm">Denim</p>
+            <p class="text-xs opacity-70 mt-1">Classic</p>
+          </a>
+
+          <a
+            href="products.html?style=winter"
+            class="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/30 p-4 hover:bg-white dark:hover:bg-slate-900 transition"
+          >
+            <div
+              class="h-10 w-10 rounded-2xl bg-teal-500/20 grid place-items-center mb-3"
+            >
+              <i class="bx bx-cloud-snow text-xl"></i>
+            </div>
+            <p class="font-semibold text-sm">Winter</p>
+            <p class="text-xs opacity-70 mt-1">Warm</p>
+          </a>
+
+          <a
+            href="products.html?sort=popular"
+            class="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/30 p-4 hover:bg-white dark:hover:bg-slate-900 transition"
+          >
+            <div
+              class="h-10 w-10 rounded-2xl bg-teal-500/20 grid place-items-center mb-3"
+            >
+              <i class="bx bx-trending-up text-xl"></i>
+            </div>
+            <p class="font-semibold text-sm">Popular</p>
+            <p class="text-xs opacity-70 mt-1">Trending</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- BRAND SLIDER (REDESIGNED - PREMIUM) -->
+    <section
+      class="py-14 bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800"
+    >
+      <div class="mx-auto max-w-7xl px-4">
+        <div
+          class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-5"
+        >
+          <div class="max-w-2xl">
+            <p class="text-xs uppercase tracking-[0.25em] opacity-70">
+              Trusted Partners
+            </p>
+            <h2 class="mt-2 text-3xl sm:text-4xl font-semibold">
+              Brands we vibe with
+            </h2>
+            <p class="mt-2 text-sm opacity-70">
+              Smooth premium slider with uniform logo cards (no ugly stretching
+              / weird grayscale).
+            </p>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button
+              class="brandPrev px-3 py-3 rounded-2xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-900 transition"
+              aria-label="Previous brand"
+            >
+              <i class="bx bx-left-arrow-alt text-xl"></i>
+            </button>
+            <button
+              class="brandNext px-3 py-3 rounded-2xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-900 transition"
+              aria-label="Next brand"
+            >
+              <i class="bx bx-right-arrow-alt text-xl"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Premium container -->
+        <div
+          class="mt-8 relative rounded-[2rem] brand-shell p-4 sm:p-6 overflow-hidden"
+        >
+          <!-- glow -->
+          <div
+            class="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-teal-500/15 blur-3xl"
+          ></div>
+          <div
+            class="pointer-events-none absolute -left-24 -bottom-24 h-72 w-72 rounded-full bg-teal-500/10 blur-3xl"
+          ></div>
+
+          <div class="swiper brandSwiperPremium">
+            <div class="swiper-wrapper">
+              <!-- Each logo sits inside a “card” so it looks consistent -->
+              <div class="swiper-slide">
+                <a href="#" class="brand-card">
+                  <img src="logo/logo1.png" alt="Brand Logo 1" />
+                </a>
+              </div>
+
+              <div class="swiper-slide">
+                <a href="#" class="brand-card">
+                  <img src="logo/logo2.png" alt="Brand Logo 2" />
+                </a>
+              </div>
+
+              <div class="swiper-slide">
+                <a href="#" class="brand-card">
+                  <img src="logo/logo3.png" alt="Brand Logo 3" />
+                </a>
+              </div>
+
+              <div class="swiper-slide">
+                <a href="#" class="brand-card">
+                  <img src="logo/logo4.png" alt="Brand Logo 4" />
+                </a>
+              </div>
+
+              <div class="swiper-slide">
+                <a href="#" class="brand-card">
+                  <img src="logo/logo5.png" alt="Brand Logo 5" />
+                </a>
+              </div>
+
+              <div class="swiper-slide">
+                <a href="#" class="brand-card">
+                  <img src="logo/logo6.png" alt="Brand Logo 6" />
+                </a>
+              </div>
+
+              <div class="swiper-slide">
+                <a href="#" class="brand-card">
+                  <img src="logo/logo7.png" alt="Brand Logo 7" />
+                </a>
+              </div>
+
+              <div class="swiper-slide">
+                <a href="#" class="brand-card">
+                  <img src="logo/logo9.png" alt="Brand Logo 9" />
+                </a>
+              </div>
+
+              <div class="swiper-slide">
+                <a href="#" class="brand-card">
+                  <img src="logo/logo10.png" alt="Brand Logo 10" />
+                </a>
+              </div>
+
+              <div class="swiper-slide">
+                <a href="#" class="brand-card">
+                  <img src="logo/logo13.png" alt="Brand Logo 13" />
+                </a>
+              </div>
+
+              <div class="swiper-slide">
+                <a href="#" class="brand-card">
+                  <img src="logo/logo14.png" alt="Brand Logo 14" />
+                </a>
+              </div>
+
+              <div class="swiper-slide">
+                <a href="#" class="brand-card">
+                  <img src="logo/logo16.png" alt="Brand Logo 16" />
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="mt-6 flex items-center justify-center">
+            <div class="brandPagination"></div>
+          </div> -->
+        </div>
+      </div>
+    </section>
+
+    <!-- HOME: Featured CTA (kept) -->
+    <section class="py-14 sm:py-18">
+      <div class="mx-auto max-w-7xl px-4">
+        <div
+          class="flex flex-col md:flex-row md:items-end md:justify-between gap-4"
+        >
+          <div>
+            <p class="text-xs uppercase tracking-[0.25em] opacity-70">Shop</p>
+            <h2 class="mt-2 text-3xl sm:text-4xl font-semibold">
+              Products curated for your vibe
+            </h2>
+            <p class="mt-2 text-sm opacity-70 max-w-2xl">
+              Products + advanced filters are on the dedicated Products page
+              (gender, brand, price, rating, color, style, popular).
+            </p>
+          </div>
+
+          <div class="flex flex-wrap gap-2">
+            <a
+              href="products.html"
+              class="px-5 py-3 rounded-2xl bg-slate-900 text-white font-semibold hover:opacity-90 transition"
+            >
+              Open Products
+            </a>
+            <a
+              href="products.html?sort=popular"
+              class="px-5 py-3 rounded-2xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-900 font-semibold transition"
+            >
+              View Popular
+            </a>
+          </div>
+        </div>
+
+        <div class="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <div
+            class="rounded-3xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 p-6 overflow-hidden relative"
+          >
+            <div
+              class="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-teal-500/20 blur-2xl"
+            ></div>
+            <p class="text-xs uppercase tracking-[0.25em] opacity-70">New</p>
+            <h3 class="mt-2 text-xl font-semibold">Minimal Essentials</h3>
+            <p class="mt-2 text-sm opacity-70">
+              Clean fits that go with everything. Built for daily wear.
+            </p>
+            <a
+              href="products.html?style=minimal"
+              class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-teal-700 dark:text-teal-300 hover:opacity-80"
+            >
+              Explore <i class="bx bx-right-arrow-alt text-xl"></i>
+            </a>
+          </div>
+
+          <div
+            class="rounded-3xl bg-slate-900 text-white border border-slate-800 p-6 overflow-hidden relative"
+          >
+            <div
+              class="absolute -left-20 -bottom-20 h-52 w-52 rounded-full bg-teal-500/25 blur-2xl"
+            ></div>
+            <p class="text-xs uppercase tracking-[0.25em] text-white/70">
+              Offer
+            </p>
+            <h3 class="mt-2 text-xl font-semibold">Women’s Drop -35%</h3>
+            <p class="mt-2 text-sm text-white/70">
+              Limited-time offer on select pieces. Grab it now.
+            </p>
+            <a
+              href="products.html?gender=female&offer=1"
+              class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-teal-300 hover:opacity-90"
+            >
+              Shop Women <i class="bx bx-right-arrow-alt text-xl"></i>
+            </a>
+          </div>
+
+          <div
+            class="rounded-3xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 p-6"
+          >
+            <p class="text-xs uppercase tracking-[0.25em] opacity-70">Fast</p>
+            <h3 class="mt-2 text-xl font-semibold">Quick Checkout</h3>
+            <p class="mt-2 text-sm opacity-70">
+              Cart drawer, quantity control, and subtotal updates instantly.
+            </p>
+            <button
+              id="btnOpenCartFromCard"
+              class="mt-5 inline-flex items-center justify-center px-4 py-2 rounded-2xl bg-teal-500 text-slate-900 font-semibold hover:bg-teal-400 transition"
+            >
+              Open Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEW: FEATURED COLLECTIONS SWIPER (Home upgrade #2) -->
+    <section
+      class="py-14 bg-white dark:bg-slate-950 border-y border-slate-200 dark:border-slate-800"
+    >
+      <div class="mx-auto max-w-7xl px-4">
+        <div
+          class="flex flex-col md:flex-row md:items-end md:justify-between gap-4"
+        >
+          <div>
+            <p class="text-xs uppercase tracking-[0.25em] opacity-70">
+              Collections
+            </p>
+            <h2 class="mt-2 text-3xl sm:text-4xl font-semibold">
+              Featured drops you can’t miss
+            </h2>
+            <p class="mt-2 text-sm opacity-70 max-w-2xl">
+              Swipe collections. Each card links to Products with filters
+              pre-applied.
+            </p>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button
+              class="homeColPrev px-3 py-3 rounded-2xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-900"
+              aria-label="Previous"
+            >
+              <i class="bx bx-left-arrow-alt text-xl"></i>
+            </button>
+            <button
+              class="homeColNext px-3 py-3 rounded-2xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-900"
+              aria-label="Next"
+            >
+              <i class="bx bx-right-arrow-alt text-xl"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="mt-7">
+          <div class="swiper homeCollections">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <a
+                  href="products.html?gender=male&style=street"
+                  class="block rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/30"
+                >
+                  <div class="p-6 relative">
+                    <div
+                      class="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-teal-500/20 blur-2xl"
+                    ></div>
+                    <p class="text-xs uppercase tracking-[0.25em] opacity-70">
+                      Men
+                    </p>
+                    <h3 class="mt-2 text-xl font-semibold">Streetwear Core</h3>
+                    <p class="mt-2 text-sm opacity-70">
+                      Hoodies, overshirts, cargos & everyday heat.
+                    </p>
+                    <span
+                      class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-teal-700 dark:text-teal-300"
+                    >
+                      Explore <i class="bx bx-right-arrow-alt text-xl"></i>
+                    </span>
+                  </div>
+                </a>
+              </div>
+
+              <div class="swiper-slide">
+                <a
+                  href="products.html?gender=female&style=formal"
+                  class="block rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/30"
+                >
+                  <div class="p-6 relative">
+                    <div
+                      class="absolute -left-20 -bottom-20 h-52 w-52 rounded-full bg-teal-500/20 blur-2xl"
+                    ></div>
+                    <p class="text-xs uppercase tracking-[0.25em] opacity-70">
+                      Women
+                    </p>
+                    <h3 class="mt-2 text-xl font-semibold">Power Formal</h3>
+                    <p class="mt-2 text-sm opacity-70">
+                      Suits, blazers, clean silhouettes for work.
+                    </p>
+                    <span
+                      class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-teal-700 dark:text-teal-300"
+                    >
+                      Explore <i class="bx bx-right-arrow-alt text-xl"></i>
+                    </span>
+                  </div>
+                </a>
+              </div>
+
+              <div class="swiper-slide">
+                <a
+                  href="products.html?style=minimal&sort=popular"
+                  class="block rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/30"
+                >
+                  <div class="p-6 relative">
+                    <div
+                      class="absolute -right-16 -bottom-16 h-44 w-44 rounded-full bg-teal-500/20 blur-2xl"
+                    ></div>
+                    <p class="text-xs uppercase tracking-[0.25em] opacity-70">
+                      Essentials
+                    </p>
+                    <h3 class="mt-2 text-xl font-semibold">Clean Minimal</h3>
+                    <p class="mt-2 text-sm opacity-70">
+                      Tee, chinos, oversize fits. Everyday ready.
+                    </p>
+                    <span
+                      class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-teal-700 dark:text-teal-300"
+                    >
+                      Explore <i class="bx bx-right-arrow-alt text-xl"></i>
+                    </span>
+                  </div>
+                </a>
+              </div>
+
+              <div class="swiper-slide">
+                <a
+                  href="products.html?style=winter"
+                  class="block rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/30"
+                >
+                  <div class="p-6 relative">
+                    <div
+                      class="absolute -left-16 -top-16 h-40 w-40 rounded-full bg-teal-500/20 blur-2xl"
+                    ></div>
+                    <p class="text-xs uppercase tracking-[0.25em] opacity-70">
+                      Season
+                    </p>
+                    <h3 class="mt-2 text-xl font-semibold">Winter Warm</h3>
+                    <p class="mt-2 text-sm opacity-70">
+                      Jackets, sweaters, layers built to last.
+                    </p>
+                    <span
+                      class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-teal-700 dark:text-teal-300"
+                    >
+                      Explore <i class="bx bx-right-arrow-alt text-xl"></i>
+                    </span>
+                  </div>
+                </a>
+              </div>
+
+              <div class="swiper-slide">
+                <a
+                  href="products.html?style=denim"
+                  class="block rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/30"
+                >
+                  <div class="p-6 relative">
+                    <div
+                      class="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-teal-500/20 blur-2xl"
+                    ></div>
+                    <p class="text-xs uppercase tracking-[0.25em] opacity-70">
+                      Classic
+                    </p>
+                    <h3 class="mt-2 text-xl font-semibold">Denim Studio</h3>
+                    <p class="mt-2 text-sm opacity-70">
+                      Jeans, jackets, washed blues & solid blacks.
+                    </p>
+                    <span
+                      class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-teal-700 dark:text-teal-300"
+                    >
+                      Explore <i class="bx bx-right-arrow-alt text-xl"></i>
+                    </span>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            <div class="mt-6 flex items-center justify-center">
+              <div class="homeColPagination"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEW: SOCIAL PROOF / STATS (Home upgrade #3) -->
+    <section class="py-14">
+      <div class="mx-auto max-w-7xl px-4">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div
+            class="rounded-[2rem] bg-slate-900 text-white border border-slate-800 p-8 sm:p-10 overflow-hidden relative"
+          >
+            <div
+              class="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-teal-500/25 blur-3xl"
+            ></div>
+            <p class="text-xs uppercase tracking-[0.25em] text-white/70">
+              Why FabricMuse
+            </p>
+            <h2 class="mt-3 text-3xl sm:text-4xl font-semibold leading-tight">
+              Premium fashion, built for daily confidence.
+            </h2>
+            <p class="mt-3 text-sm sm:text-base text-white/75 max-w-xl">
+              Easy shopping experience with fast shipping, secure checkout, and
+              curated quality checks.
+            </p>
+
+            <div class="mt-8 grid grid-cols-2 gap-4">
+              <div class="rounded-2xl bg-white/10 border border-white/15 p-5">
+                <p class="text-3xl font-semibold counter" data-target="2400">
+                  0
+                </p>
+                <p class="text-sm text-white/70 mt-1">Happy Customers</p>
+              </div>
+              <div class="rounded-2xl bg-white/10 border border-white/15 p-5">
+                <p class="text-3xl font-semibold counter" data-target="180">
+                  0
+                </p>
+                <p class="text-sm text-white/70 mt-1">New Arrivals / Month</p>
+              </div>
+              <div class="rounded-2xl bg-white/10 border border-white/15 p-5">
+                <p class="text-3xl font-semibold counter" data-target="98">0</p>
+                <p class="text-sm text-white/70 mt-1">Quality Score</p>
+              </div>
+              <div class="rounded-2xl bg-white/10 border border-white/15 p-5">
+                <p class="text-3xl font-semibold counter" data-target="24">0</p>
+                <p class="text-sm text-white/70 mt-1">Hour Dispatch</p>
+              </div>
+            </div>
+
+            <div class="mt-8 flex flex-wrap gap-3">
+              <a
+                href="about.html"
+                class="px-6 py-3 rounded-2xl bg-teal-500 text-slate-900 font-semibold hover:bg-teal-400 transition"
+                >Learn More</a
+              >
+              <a
+                href="contact.html"
+                class="px-6 py-3 rounded-2xl border border-white/25 text-white font-semibold hover:bg-white/10 transition"
+                >Talk to Us</a
+              >
+            </div>
+          </div>
+
+          <div
+            class="rounded-[2rem] bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 p-8 sm:p-10"
+          >
+            <p class="text-xs uppercase tracking-[0.25em] opacity-70">
+              Reviews
+            </p>
+            <h3 class="mt-2 text-2xl sm:text-3xl font-semibold">
+              What customers say
+            </h3>
+            <p class="mt-2 text-sm opacity-70">
+              Short, clean cards. (Demo reviews — replace anytime.)
+            </p>
+
+            <div class="mt-6 space-y-4">
+              <div
+                class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/30 p-6"
+              >
+                <div class="flex items-start justify-between gap-3">
+                  <div>
+                    <p class="font-semibold">Aarav Patel</p>
+                    <p class="text-xs opacity-70">Streetwear</p>
+                  </div>
+                  <div class="flex gap-0.5 text-teal-600 dark:text-teal-300">
+                    <i class="bx bxs-star"></i><i class="bx bxs-star"></i
+                    ><i class="bx bxs-star"></i><i class="bx bxs-star"></i
+                    ><i class="bx bxs-star"></i>
+                  </div>
+                </div>
+                <p class="mt-3 text-sm opacity-80">
+                  “Quality is insane. Fit looks premium and delivery was quick.”
+                </p>
+              </div>
+
+              <div
+                class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/30 p-6"
+              >
+                <div class="flex items-start justify-between gap-3">
+                  <div>
+                    <p class="font-semibold">Diya Shah</p>
+                    <p class="text-xs opacity-70">Women’s Formal</p>
+                  </div>
+                  <div class="flex gap-0.5 text-teal-600 dark:text-teal-300">
+                    <i class="bx bxs-star"></i><i class="bx bxs-star"></i
+                    ><i class="bx bxs-star"></i><i class="bx bxs-star"></i
+                    ><i class="bx bx-star"></i>
+                  </div>
+                </div>
+                <p class="mt-3 text-sm opacity-80">
+                  “Love the design and stitching. Looks clean with office
+                  outfits.”
+                </p>
+              </div>
+
+              <div
+                class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/30 p-6"
+              >
+                <div class="flex items-start justify-between gap-3">
+                  <div>
+                    <p class="font-semibold">Kunal Mehta</p>
+                    <p class="text-xs opacity-70">Essentials</p>
+                  </div>
+                  <div class="flex gap-0.5 text-teal-600 dark:text-teal-300">
+                    <i class="bx bxs-star"></i><i class="bx bxs-star"></i
+                    ><i class="bx bxs-star"></i><i class="bx bxs-star"></i
+                    ><i class="bx bxs-star-half"></i>
+                  </div>
+                </div>
+                <p class="mt-3 text-sm opacity-80">
+                  “Minimal tees are perfect. Color and comfort are solid.”
+                </p>
+              </div>
+            </div>
+
+            <div class="mt-6 flex flex-wrap gap-2">
+              <a
+                href="products.html?sort=rating"
+                class="px-5 py-3 rounded-2xl bg-slate-900 text-white font-semibold hover:opacity-90 transition"
+                >Top Rated</a
+              >
+              <a
+                href="products.html?sort=popular"
+                class="px-5 py-3 rounded-2xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-900 font-semibold transition"
+                >Trending</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WOMEN VIDEO PROMO -->
+    <section class="relative h-[72vh] min-h-[520px] overflow-hidden">
+      <video
+        class="absolute inset-0 h-full w-full object-cover"
+        autoplay
+        muted
+        loop
+        playsinline
+      >
+        <source src="video/video5.mp4" type="video/mp4" />
+      </video>
+      <div
+        class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/80"
+      ></div>
+
+      <div class="relative mx-auto max-w-7xl px-4 h-full flex items-center">
+        <div class="max-w-2xl text-white">
+          <p
+            class="inline-flex items-center gap-2 text-xs sm:text-sm uppercase tracking-[0.25em] text-white/80"
+          >
+            <span class="h-2 w-2 rounded-full bg-teal-300"></span>
+            Limited Offer
+          </p>
+          <h2 class="mt-4 text-4xl sm:text-5xl font-semibold leading-tight">
+            Women’s Collection <span class="text-teal-300">35% Off</span>
+          </h2>
+          <p class="mt-3 text-white/85 text-base sm:text-lg max-w-xl">
+            Premium winterwear, elegant suits, and everyday essentials—styled
+            for comfort and confidence.
+          </p>
+
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a
+              href="products.html?gender=female&offer=1"
+              class="px-6 py-3 rounded-2xl bg-teal-500 text-slate-900 font-semibold hover:bg-teal-400 transition"
+              >Shop Now</a
+            >
+            <a
+              href="services.html"
+              class="px-6 py-3 rounded-2xl border border-white/35 text-white font-semibold hover:bg-white/10 transition"
+              >View Services</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEW: FAQ (Home upgrade #4) -->
+    <section
+      class="py-14 bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800"
+    >
+      <div class="mx-auto max-w-7xl px-4">
+        <div
+          class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8"
+        >
+          <div class="max-w-xl">
+            <p class="text-xs uppercase tracking-[0.25em] opacity-70">FAQ</p>
+            <h2 class="mt-2 text-3xl sm:text-4xl font-semibold">
+              Questions? We’ve got you.
+            </h2>
+            <p class="mt-2 text-sm opacity-70">
+              Quick answers about delivery, returns, and payments. (Works
+              without extra JS.)
+            </p>
+            <a
+              href="services.html"
+              class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-teal-700 dark:text-teal-300 hover:opacity-80"
+            >
+              Read full policy <i class="bx bx-right-arrow-alt text-xl"></i>
+            </a>
+          </div>
+
+          <div class="flex-1 space-y-3">
+            <details
+              class="group rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/30 p-5"
+            >
+              <summary
+                class="cursor-pointer list-none flex items-center justify-between gap-3"
+              >
+                <span class="font-semibold">How long does delivery take?</span>
+                <i class="bx bx-plus text-2xl opacity-70 group-open:hidden"></i>
+                <i
+                  class="bx bx-minus text-2xl opacity-70 hidden group-open:block"
+                ></i>
+              </summary>
+              <p class="mt-3 text-sm opacity-80">
+                Usually 2–5 business days depending on your location. Dispatch
+                is within 24 hours for most orders.
+              </p>
+            </details>
+
+            <details
+              class="group rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/30 p-5"
+            >
+              <summary
+                class="cursor-pointer list-none flex items-center justify-between gap-3"
+              >
+                <span class="font-semibold">What is the return policy?</span>
+                <i class="bx bx-plus text-2xl opacity-70 group-open:hidden"></i>
+                <i
+                  class="bx bx-minus text-2xl opacity-70 hidden group-open:block"
+                ></i>
+              </summary>
+              <p class="mt-3 text-sm opacity-80">
+                7-day easy returns for unused items with tags. Visit the
+                Services page for return steps.
+              </p>
+            </details>
+
+            <details
+              class="group rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/30 p-5"
+            >
+              <summary
+                class="cursor-pointer list-none flex items-center justify-between gap-3"
+              >
+                <span class="font-semibold"
+                  >Is Cash on Delivery available?</span
+                >
+                <i class="bx bx-plus text-2xl opacity-70 group-open:hidden"></i>
+                <i
+                  class="bx bx-minus text-2xl opacity-70 hidden group-open:block"
+                ></i>
+              </summary>
+              <p class="mt-3 text-sm opacity-80">
+                For demo version: online payments only. If you want COD later,
+                we can add it in checkout logic.
+              </p>
+            </details>
+
+            <details
+              class="group rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/30 p-5"
+            >
+              <summary
+                class="cursor-pointer list-none flex items-center justify-between gap-3"
+              >
+                <span class="font-semibold">Where can I track my order?</span>
+                <i class="bx bx-plus text-2xl opacity-70 group-open:hidden"></i>
+                <i
+                  class="bx bx-minus text-2xl opacity-70 hidden group-open:block"
+                ></i>
+              </summary>
+              <p class="mt-3 text-sm opacity-80">
+                Login from the Profile menu. (Demo “My Orders” is available
+                after login in this template.)
+              </p>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEW: FINAL CTA (Home upgrade #5) -->
+    <section class="py-14">
+      <div class="mx-auto max-w-7xl px-4">
+        <div
+          class="rounded-[2rem] bg-slate-900 text-white border border-slate-800 p-8 sm:p-10 overflow-hidden relative"
+        >
+          <div
+            class="absolute -right-32 -top-32 h-80 w-80 rounded-full bg-teal-500/25 blur-3xl"
+          ></div>
+          <div
+            class="relative flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6"
+          >
+            <div class="max-w-2xl">
+              <p class="text-xs uppercase tracking-[0.25em] text-white/70">
+                Ready?
+              </p>
+              <h2 class="mt-2 text-3xl sm:text-4xl font-semibold">
+                Find your next fit in 60 seconds.
+              </h2>
+              <p class="mt-2 text-sm sm:text-base text-white/75">
+                Open Products, use filters, add to cart, and checkout.
+                Everything is smooth and fast.
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <a
+                href="products.html"
+                class="px-6 py-3 rounded-2xl bg-teal-500 text-slate-900 font-semibold hover:bg-teal-400 transition"
+                >Shop Now</a
+              >
+              <a
+                href="products.html?sort=popular"
+                class="px-6 py-3 rounded-2xl border border-white/25 text-white font-semibold hover:bg-white/10 transition"
+                >See Trending</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER (GLOBAL - PREMIUM) -->
+    <footer
+      class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950"
+    >
+      <div class="mx-auto max-w-7xl px-4 py-14">
+        <!-- Newsletter -->
+        <div
+          class="rounded-[2rem] border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/30 p-8 sm:p-10"
+        >
+          <div
+            class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6"
+          >
+            <div>
+              <p class="text-xs uppercase tracking-[0.25em] opacity-70">
+                Newsletter
+              </p>
+              <h3 class="mt-2 text-2xl sm:text-3xl font-semibold">
+                Subscribe to FabricMuse updates
+              </h3>
+              <p class="mt-2 text-sm opacity-70">
+                Get new drops, exclusive offers, and styling tips.
+              </p>
+            </div>
+
+            <div class="flex w-full lg:w-auto gap-2">
+              <input
+                id="newsletterEmail"
+                class="flex-1 lg:w-80 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-teal-400"
+                placeholder="Email address"
+              />
+              <button
+                id="btnNewsletter"
+                class="px-5 py-3 rounded-2xl bg-slate-900 text-white font-semibold hover:opacity-90 transition"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main footer grid -->
+        <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Brand -->
+          <div>
+            <div class="flex items-center gap-2">
+              <span
+                class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-teal-500 text-slate-900 font-bold"
+                >FM</span
+              >
+              <div>
+                <p class="font-semibold text-lg leading-tight">FabricMuse</p>
+                <p class="text-xs opacity-70">Fashion Clothes Website</p>
+              </div>
+            </div>
+
+            <p class="mt-4 text-sm opacity-70">
+              Curated apparel and accessories designed to celebrate
+              individuality and creativity.
+            </p>
+
+            <!-- Socials (optional) -->
+            <div class="mt-5 flex items-center gap-2">
+              <a
+                href="#"
+                class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-900 transition"
+                aria-label="Instagram"
+              >
+                <i class="bx bxl-instagram text-xl"></i>
+              </a>
+              <a
+                href="#"
+                class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-900 transition"
+                aria-label="Facebook"
+              >
+                <i class="bx bxl-facebook text-xl"></i>
+              </a>
+              <a
+                href="#"
+                class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-900 transition"
+                aria-label="Twitter"
+              >
+                <i class="bx bxl-twitter text-xl"></i>
+              </a>
+              <a
+                href="#"
+                class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-900 transition"
+                aria-label="YouTube"
+              >
+                <i class="bx bxl-youtube text-xl"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Quick Links -->
+          <div>
+            <p class="font-semibold text-lg">Quick Links</p>
+            <div class="mt-3 space-y-2 text-sm">
+              <a
+                class="block opacity-80 hover:opacity-100 hover:text-teal-700 dark:hover:text-teal-300 transition"
+                href="index.html"
+                >Home</a
+              >
+              <a
+                class="block opacity-80 hover:opacity-100 hover:text-teal-700 dark:hover:text-teal-300 transition"
+                href="products.html"
+                >Products</a
+              >
+              <a
+                class="block opacity-80 hover:opacity-100 hover:text-teal-700 dark:hover:text-teal-300 transition"
+                href="services.html"
+                >Services</a
+              >
+              <a
+                class="block opacity-80 hover:opacity-100 hover:text-teal-700 dark:hover:text-teal-300 transition"
+                href="about.html"
+                >About</a
+              >
+              <a
+                class="block opacity-80 hover:opacity-100 hover:text-teal-700 dark:hover:text-teal-300 transition"
+                href="contact.html"
+                >Contact</a
+              >
+            </div>
+          </div>
+
+          <!-- Support -->
+          <div>
+            <p class="font-semibold text-lg">Support</p>
+            <div class="mt-3 space-y-2 text-sm">
+              <a
+                class="block opacity-80 hover:opacity-100 hover:text-teal-700 dark:hover:text-teal-300 transition"
+                href="services.html"
+                >Delivery</a
+              >
+              <a
+                class="block opacity-80 hover:opacity-100 hover:text-teal-700 dark:hover:text-teal-300 transition"
+                href="services.html"
+                >Returns</a
+              >
+              <a
+                class="block opacity-80 hover:opacity-100 hover:text-teal-700 dark:hover:text-teal-300 transition"
+                href="services.html"
+                >Payment</a
+              >
+              <a
+                class="block opacity-80 hover:opacity-100 hover:text-teal-700 dark:hover:text-teal-300 transition"
+                href="services.html"
+                >Help Center</a
+              >
+            </div>
+          </div>
+
+          <!-- Contact -->
+          <div>
+            <p class="font-semibold text-lg">Get in touch</p>
+            <div class="mt-3 space-y-2 text-sm opacity-80">
+              <p class="flex items-center gap-2">
+                <i class="bx bx-map"></i> Ahmedabad, Gujarat 382481
+              </p>
+              <p class="flex items-center gap-2">
+                <i class="bx bx-phone"></i> +91 8008146642
+              </p>
+              <p class="flex items-center gap-2">
+                <i class="bx bx-envelope"></i> creativeencode23@yahoo.com
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- BIG BRAND STRIP (your requested last section) -->
+        <div
+          class="mt-12 pt-10 border-t border-slate-200 dark:border-slate-800"
+        >
+          <div
+            class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6"
+          >
+            <div>
+              <p class="footer-brand">FabricMuse</p>
+              <p class="mt-2 text-sm opacity-70 max-w-2xl">
+                Premium fashion experience — clean design, smooth shopping, and
+                modern UI.
+              </p>
+            </div>
+
+            <div class="flex flex-wrap gap-4 text-sm opacity-80">
+              <a
+                class="hover:opacity-100 hover:text-teal-700 dark:hover:text-teal-300 transition"
+                href="#"
+                >Terms</a
+              >
+              <a
+                class="hover:opacity-100 hover:text-teal-700 dark:hover:text-teal-300 transition"
+                href="#"
+                >Privacy</a
+              >
+              <a
+                class="hover:opacity-100 hover:text-teal-700 dark:hover:text-teal-300 transition"
+                href="#"
+                >Cookies</a
+              >
+              <a
+                class="hover:opacity-100 hover:text-teal-700 dark:hover:text-teal-300 transition"
+                href="#"
+                >FAQs</a
+              >
+            </div>
+          </div>
+
+          <div
+            class="mt-6 flex flex-col sm:flex-row gap-3 items-center justify-between text-xs opacity-70"
+          >
+            <p>
+              © 2025 FabricMuse E-Commerce at Creative Encode Technologies Pvt.
+              Ltd
+            </p>
+            <p class="opacity-60">Built with ❤️ • Tailwind + JS</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Shared JS (global for all pages) -->
+    <script src="assets/js/app.js"></script>
+
+    <!-- Home JS (optional, only if file exists later) -->
+    <!-- <script src="assets/js/home.js"></script> -->
+
+    <!-- Home init (kept tiny here; later we can move into home.js) -->
+    <script>
+      // Brand slider (home only)
+      new Swiper(".brandSwiperPremium", {
+        slidesPerView: 2.1,
+        spaceBetween: 12,
+        loop: true,
+        speed: 800,
+        autoplay: { delay: 1800, disableOnInteraction: false },
+        pagination: { el: ".brandPagination", clickable: true },
+        navigation: { nextEl: ".brandNext", prevEl: ".brandPrev" },
+        breakpoints: {
+          640: { slidesPerView: 3.2, spaceBetween: 14 },
+          768: { slidesPerView: 4.2, spaceBetween: 16 },
+          1024: { slidesPerView: 6, spaceBetween: 18 }
+        }
+      });
+
+      // Collections slider (home only)
+      new Swiper(".homeCollections", {
+        slidesPerView: 1.1,
+        spaceBetween: 14,
+        speed: 600,
+        loop: true,
+        pagination: { el: ".homeColPagination", clickable: true },
+        navigation: { nextEl: ".homeColNext", prevEl: ".homeColPrev" },
+        breakpoints: {
+          640: { slidesPerView: 1.6, spaceBetween: 16 },
+          768: { slidesPerView: 2.2, spaceBetween: 18 },
+          1024: { slidesPerView: 3, spaceBetween: 18 }
+        }
+      });
+
+      // Hero explore scroll
+      const btnScrollDown = document.getElementById("btnScrollDown");
+      btnScrollDown?.addEventListener("click", () => {
+        window.scrollTo({ top: window.innerHeight * 0.9, behavior: "smooth" });
+      });
+
+      // Open cart from home card
+      document
+        .getElementById("btnOpenCartFromCard")
+        ?.addEventListener("click", () => {
+          // app.js should already handle btnCart click; just trigger it
+          document.getElementById("btnCart")?.click();
+        });
+
+      // Simple counter animation (runs once when visible)
+      (function () {
+        const counters = document.querySelectorAll(".counter");
+        if (!counters.length) return;
+
+        const animate = (el) => {
+          const target = parseInt(el.getAttribute("data-target") || "0", 10);
+          const isPercent = target === 98; // only for demo "98"
+          let cur = 0;
+          const step = Math.max(1, Math.floor(target / 80));
+          const tick = () => {
+            cur += step;
+            if (cur >= target) cur = target;
+            el.textContent = isPercent ? `${cur}%` : `${cur}+`;
+            if (cur < target) requestAnimationFrame(tick);
+          };
+          tick();
+        };
+
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                animate(e.target);
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.25 }
+        );
+
+        counters.forEach((c) => io.observe(c));
+      })();
+    </script>
+  </body>
+</html>

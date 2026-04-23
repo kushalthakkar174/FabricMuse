@@ -1,0 +1,263 @@
+/* assets/css/style.css
+   Global styles for FabricMuse (all pages)
+*/
+
+/* Small-only custom css */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Optional: better tap highlight */
+* { -webkit-tap-highlight-color: transparent; }
+
+/* -----------------------------
+   Drawer helpers
+   ----------------------------- */
+.drawer-open { transform: translateX(0) !important; }
+.drawer-left-closed { transform: translateX(-100%) !important; }
+.drawer-right-closed { transform: translateX(100%) !important; }
+
+/* Make transform animations smoother */
+#mobileMenu,
+#cartDrawer,
+#filtersDrawer {
+  will-change: transform;
+}
+
+/* -----------------------------
+   Fix mobile 100vh issues
+   Use dvh where supported
+   ----------------------------- */
+.full-dvh {
+  height: 100dvh;
+}
+
+/* -----------------------------
+   Better image rendering
+   ----------------------------- */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* -----------------------------
+   Button baseline (optional)
+   Helps icons align nicely
+   ----------------------------- */
+button {
+  cursor: pointer;
+}
+
+/* Prevent button text selection weirdness on mobile */
+button, a {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* -----------------------------
+   Cart drawer layout helper
+   If any page uses old calc height, this prevents overflow bugs
+   ----------------------------- */
+.cart-drawer {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+}
+
+/* If a page still uses this section, force it to scroll properly */
+.cart-body-scroll {
+  flex: 1 1 auto;
+  overflow-y: auto;
+}
+
+/* -----------------------------
+   Search panel polish (optional)
+   ----------------------------- */
+#searchPanel input:focus {
+  outline: none;
+}
+
+/* -----------------------------
+   Active link helper (optional)
+   Add class "nav-active" on current page link
+   ----------------------------- */
+.nav-active {
+  color: rgb(13 148 136); /* teal-600 */
+  font-weight: 600;
+}
+.dark .nav-active {
+  color: rgb(94 234 212); /* teal-300 */
+}
+
+/* -----------------------------
+   Swiper polish (global)
+   - Brand slider logos look cleaner
+   - Home collections pagination looks premium
+   ----------------------------- */
+
+/* Main rounded container (glass + gradient) */
+.brand-shell{
+  position: relative;
+  border-radius: 2rem;
+  border: 1px solid rgba(148,163,184,0.35); /* slate-400 */
+  background:
+    radial-gradient(600px 220px at 12% 15%, rgba(20,184,166,0.14), transparent 60%),
+    radial-gradient(520px 220px at 88% 55%, rgba(45,212,191,0.12), transparent 58%),
+    linear-gradient(180deg, rgba(255,255,255,0.75), rgba(248,250,252,0.9));
+  backdrop-filter: blur(14px);
+  box-shadow:
+    0 18px 55px rgba(2,6,23,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.7);
+}
+
+/* Dark mode: deep navy glass */
+.dark .brand-shell{
+  border: 1px solid rgba(51,65,85,0.65); /* slate-700 */
+  background:
+    radial-gradient(680px 240px at 14% 20%, rgba(20,184,166,0.16), transparent 62%),
+    radial-gradient(620px 260px at 92% 70%, rgba(45,212,191,0.13), transparent 62%),
+    linear-gradient(180deg, rgba(2,6,23,0.75), rgba(2,6,23,0.95));
+  box-shadow:
+    0 30px 90px rgba(0,0,0,0.55),
+    inset 0 1px 0 rgba(148,163,184,0.10);
+}
+
+/* Premium logo cards */
+.brand-card{
+  display: grid;
+  place-items: center;
+  height: 88px;
+  border-radius: 26px;
+  padding: 16px;
+  border: 1px solid rgba(148,163,184,0.35);
+  background: rgba(255,255,255,0.70);
+  backdrop-filter: blur(10px);
+  transition: transform 220ms ease, border-color 220ms ease, background 220ms ease, box-shadow 220ms ease;
+}
+
+.dark .brand-card{
+  border-color: rgba(51,65,85,0.75);
+  background: rgba(2,6,23,0.35);
+}
+
+/* Logo itself */
+.brand-card img{
+  max-height: 44px;
+  width: auto;
+  object-fit: contain;
+  opacity: 0.92;
+  filter: saturate(1.10) contrast(1.08);
+  transition: opacity 220ms ease, transform 220ms ease, filter 220ms ease;
+}
+
+.dark .brand-card img{
+  opacity: 0.95;
+  filter: saturate(1.05) contrast(1.05) brightness(1.05);
+}
+
+/* Hover feel */
+.brand-card:hover{
+  transform: translateY(-2px);
+  border-color: rgba(20,184,166,0.55);
+  background: rgba(255,255,255,0.90);
+  box-shadow: 0 14px 38px rgba(2,6,23,0.10);
+}
+.dark .brand-card:hover{
+  background: rgba(2,6,23,0.55);
+  box-shadow: 0 24px 70px rgba(0,0,0,0.45);
+}
+
+.brand-card:hover img{
+  opacity: 1;
+  transform: scale(1.04);
+}
+
+/* Pagination (exact screenshot style) */
+.brandPagination{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(15,23,42,0.70); /* slate-900 */
+}
+.dark .brandPagination{
+  color: rgba(226,232,240,0.75); /* slate-200 */
+}
+
+.brandPagination .swiper-pagination-bullet{
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  opacity: 0.35;
+  background: currentColor;
+  transition: opacity 200ms ease, width 200ms ease;
+}
+
+.brandPagination .swiper-pagination-bullet-active{
+  opacity: 0.95;
+  width: 26px;
+}
+
+/* Optional: cleaner arrows (matches screenshot better) */
+.brandPrev, .brandNext{
+  border: 1px solid rgba(148,163,184,0.35) !important;
+  background: rgba(255,255,255,0.55) !important;
+  backdrop-filter: blur(10px);
+  transition: 200ms ease;
+}
+.dark .brandPrev, .dark .brandNext{
+  border-color: rgba(51,65,85,0.65) !important;
+  background: rgba(2,6,23,0.35) !important;
+}
+.brandPrev:hover, .brandNext:hover{
+  transform: translateY(-1px);
+  border-color: rgba(20,184,166,0.55) !important;
+}
+
+/* -----------------------------
+   Details / FAQ polish (global)
+   Removes default marker and keeps summary clean
+   ----------------------------- */
+details summary::-webkit-details-marker { display: none; }
+details summary { list-style: none; }
+
+/* Prevent summary text selection on tap */
+details summary {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Smooth open feel */
+details[open] {
+  animation: detailsFadeIn 160ms ease-out;
+}
+@keyframes detailsFadeIn {
+  from { transform: translateY(-2px); opacity: 0.65; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+/* Footer big brand wordmark */
+.footer-brand{
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 0.9;
+  font-size: clamp(44px, 6vw, 86px);
+  color: rgba(15,23,42,0.95); /* slate-900 */
+  text-transform: none;
+  position: relative;
+}
+
+.dark .footer-brand{
+  color: rgba(226,232,240,0.92); /* slate-200 */
+}
+
+/* Subtle teal underline glow (premium touch) */
+.footer-brand::after{
+  content: "";
+  display: block;
+  margin-top: 10px;
+  width: 120px;
+  height: 4px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(20,184,166,0.95), rgba(45,212,191,0.55));
+  opacity: 0.9;
+}

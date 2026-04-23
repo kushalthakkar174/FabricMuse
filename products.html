@@ -1,0 +1,944 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FabricMuse - Products</title>
+
+    <!-- Tailwind (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              display: [
+                "ui-sans-serif",
+                "system-ui",
+                "Segoe UI",
+                "Roboto",
+                "Helvetica",
+                "Arial"
+              ]
+            }
+          }
+        },
+        darkMode: "class"
+      };
+    </script>
+
+    <!-- Icons -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Shared css -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+
+  <body
+    class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-50 selection:bg-teal-200 selection:text-slate-900"
+  >
+    <!-- Top Announcement Bar -->
+    <div class="w-full bg-slate-900 text-white dark:bg-slate-900">
+      <div
+        class="mx-auto max-w-7xl px-4 py-2 text-xs sm:text-sm flex items-center justify-between gap-3"
+      >
+        <p class="opacity-90">
+          Free delivery above ₹999 • Easy returns • Secure checkout
+        </p>
+        <div class="hidden sm:flex items-center gap-3 opacity-90">
+          <span class="flex items-center gap-1"
+            ><i class="bx bx-phone"></i> +91 8008146642</span
+          >
+          <span class="flex items-center gap-1"
+            ><i class="bx bx-envelope"></i> creativeencode23@yahoo.com</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <header
+      class="sticky top-0 z-50 border-b border-slate-200/60 dark:border-slate-800/70 bg-white/70 dark:bg-slate-950/60 backdrop-blur"
+    >
+      <nav class="mx-auto max-w-7xl px-4">
+        <div class="h-16 flex items-center justify-between gap-3">
+          <!-- Left -->
+          <div class="flex items-center gap-3">
+            <button
+              id="btnMobileMenu"
+              class="md:hidden p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900"
+              aria-label="Open menu"
+            >
+              <i class="bx bx-menu text-2xl"></i>
+            </button>
+
+            <a href="index.html#home" class="flex items-center gap-2">
+              <span
+                class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-teal-500 text-slate-900 font-bold"
+                >FM</span
+              >
+              <span class="font-semibold tracking-wide text-lg"
+                >FabricMuse</span
+              >
+            </a>
+          </div>
+
+          <!-- Center -->
+          <ul class="hidden md:flex items-center gap-6 text-sm font-medium">
+            <li>
+              <a
+                class="hover:text-teal-700 dark:hover:text-teal-300 transition"
+                href="index.html"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a class="text-teal-700 dark:text-teal-300" href="products.html"
+                >Products</a
+              >
+            </li>
+            <li>
+              <a
+                class="hover:text-teal-700 dark:hover:text-teal-300 transition"
+                href="services.html"
+                >Services</a
+              >
+            </li>
+            <li>
+              <a
+                class="hover:text-teal-700 dark:hover:text-teal-300 transition"
+                href="about.html"
+                >About</a
+              >
+            </li>
+            <li>
+              <a
+                class="hover:text-teal-700 dark:hover:text-teal-300 transition"
+                href="contact.html"
+                >Contact</a
+              >
+            </li>
+          </ul>
+
+          <!-- Right -->
+          <div class="flex items-center gap-2">
+            <!-- Search -->
+            <button
+              id="btnSearch"
+              class="p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900"
+              aria-label="Search"
+            >
+              <i class="bx bx-search text-2xl"></i>
+            </button>
+
+            <!-- Dark Mode -->
+            <button
+              id="btnTheme"
+              class="p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900"
+              aria-label="Toggle theme"
+            >
+              <i id="iconTheme" class="bx bx-moon text-2xl"></i>
+            </button>
+
+            <!-- Profile -->
+            <div class="relative">
+              <button
+                id="btnProfile"
+                class="p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900"
+                aria-label="Profile"
+              >
+                <i class="bx bx-user text-2xl"></i>
+              </button>
+
+              <div
+                id="profileMenu"
+                class="hidden absolute right-0 mt-2 w-64 overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 shadow-xl"
+              >
+                <div
+                  class="p-3 border-b border-slate-200 dark:border-slate-800"
+                >
+                  <p id="profileHello" class="text-sm font-semibold">
+                    Welcome 👋
+                  </p>
+                  <p id="profileSub" class="text-xs opacity-70">
+                    Sign in to track orders
+                  </p>
+                </div>
+
+                <a
+                  id="profilePrimaryLink"
+                  class="block px-4 py-3 text-sm hover:bg-slate-100 dark:hover:bg-slate-900"
+                  href="auth.html"
+                >
+                  Login / Register
+                </a>
+
+                <a
+                  id="profileOrdersLink"
+                  class="hidden block px-4 py-3 text-sm hover:bg-slate-100 dark:hover:bg-slate-900"
+                  href="products.html"
+                >
+                  My Orders (Demo)
+                </a>
+
+                <button
+                  id="btnLogout"
+                  class="hidden w-full text-left px-4 py-3 text-sm hover:bg-slate-100 dark:hover:bg-slate-900"
+                >
+                  Logout
+                </button>
+              </div>
+            </div>
+
+            <!-- Cart -->
+            <button
+              id="btnCart"
+              class="relative p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900"
+              aria-label="Cart"
+            >
+              <i class="bx bx-shopping-bag text-2xl"></i>
+              <span
+                id="cartBadge"
+                class="hidden absolute -top-1 -right-1 text-[11px] bg-teal-500 text-slate-900 font-bold rounded-full px-1.5 py-0.5"
+                >0</span
+              >
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Search Panel (global) -->
+      <div
+        id="searchPanel"
+        class="hidden border-t border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-950/60 backdrop-blur"
+      >
+        <div class="mx-auto max-w-7xl px-4 py-4">
+          <div class="flex gap-2">
+            <div class="relative flex-1">
+              <i
+                class="bx bx-search absolute left-3 top-1/2 -translate-y-1/2 opacity-60 text-xl"
+              ></i>
+              <input
+                id="searchInput"
+                class="w-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 px-10 py-3 text-sm outline-none focus:ring-2 focus:ring-teal-400"
+                placeholder="Search products (e.g. Jacket, Suit, Jeans)..."
+              />
+            </div>
+
+            <button
+              id="btnSearchGo"
+              class="px-4 py-3 rounded-2xl bg-slate-900 text-white font-semibold hover:opacity-90"
+            >
+              Search
+            </button>
+
+            <button
+              id="btnSearchClose"
+              class="px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-900"
+            >
+              Close
+            </button>
+          </div>
+
+          <p class="mt-2 text-xs opacity-70">
+            Tip: use filters for Gender / Brand / Price / Rating / Color /
+            Style.
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Menu Drawer -->
+    <div
+      id="mobileMenuBackdrop"
+      class="hidden fixed inset-0 z-50 bg-black/40"
+    ></div>
+    <aside
+      id="mobileMenu"
+      class="fixed z-50 top-0 left-0 h-full w-[320px] -translate-x-full transition-transform duration-300 bg-white dark:bg-slate-950 border-r border-slate-200 dark:border-slate-800"
+    >
+      <div
+        class="p-4 flex items-center justify-between border-b border-slate-200 dark:border-slate-800"
+      >
+        <div class="flex items-center gap-2">
+          <span
+            class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-teal-500 text-slate-900 font-bold"
+            >FM</span
+          >
+          <span class="font-semibold">FabricMuse</span>
+        </div>
+        <button
+          id="btnMobileClose"
+          class="p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900"
+          aria-label="Close menu"
+        >
+          <i class="bx bx-x text-2xl"></i>
+        </button>
+      </div>
+
+      <div class="p-4 space-y-2 text-sm">
+        <a
+          class="block px-3 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900"
+          href="index.html"
+          >Home</a
+        >
+        <a
+          class="block px-3 py-3 rounded-xl bg-slate-900 text-white font-semibold"
+          href="products.html"
+          >Products</a
+        >
+        <a
+          class="block px-3 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900"
+          href="services.html"
+          >Services</a
+        >
+        <a
+          class="block px-3 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900"
+          href="about.html"
+          >About</a
+        >
+        <a
+          class="block px-3 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900"
+          href="contact.html"
+          >Contact</a
+        >
+
+        <div class="pt-3 border-t border-slate-200 dark:border-slate-800">
+          <button
+            id="btnThemeMobile"
+            class="w-full flex items-center justify-between px-3 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900"
+          >
+            <span class="flex items-center gap-2"
+              ><i class="bx bx-moon text-xl"></i> Theme</span
+            >
+            <span class="text-xs opacity-70">Toggle</span>
+          </button>
+
+          <a
+            id="mobileAuthLink"
+            class="mt-2 w-full block text-center px-3 py-3 rounded-xl bg-slate-900 text-white font-semibold hover:opacity-90"
+            href="auth.html"
+          >
+            Login / Register
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- CART DRAWER (global) -->
+    <div id="cartBackdrop" class="hidden fixed inset-0 z-50 bg-black/40"></div>
+    <aside
+      id="cartDrawer"
+      class="fixed z-50 top-0 right-0 h-full w-full sm:w-[420px] translate-x-full transition-transform duration-300 bg-white dark:bg-slate-950 border-l border-slate-200 dark:border-slate-800 flex flex-col"
+    >
+      <div
+        class="p-4 flex items-center justify-between border-b border-slate-200 dark:border-slate-800"
+      >
+        <div>
+          <p class="font-semibold text-lg">Your Cart</p>
+          <p class="text-xs opacity-70">Review your items before checkout</p>
+        </div>
+        <button
+          id="btnCartClose"
+          class="p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900"
+          aria-label="Close cart"
+        >
+          <i class="bx bx-x text-2xl"></i>
+        </button>
+      </div>
+
+      <div class="p-4 flex-1 overflow-auto no-scrollbar">
+        <div
+          id="cartEmpty"
+          class="rounded-2xl border border-dashed border-slate-300 dark:border-slate-700 p-6 text-center"
+        >
+          <p class="font-semibold">Your cart is empty</p>
+          <p class="text-sm opacity-70 mt-1">Add products from this page.</p>
+        </div>
+
+        <div id="cartItems" class="hidden space-y-3"></div>
+      </div>
+
+      <div class="p-4 border-t border-slate-200 dark:border-slate-800 mt-auto">
+        <div class="flex items-center justify-between text-sm">
+          <span class="opacity-70">Subtotal</span>
+          <span id="cartSubtotal" class="font-semibold">₹0.00</span>
+        </div>
+        <div class="flex items-center justify-between text-sm mt-2">
+          <span class="opacity-70">Shipping</span>
+          <span class="font-semibold">Free</span>
+        </div>
+
+        <button
+          id="btnCheckout"
+          class="mt-4 w-full rounded-2xl bg-teal-500 text-slate-900 font-semibold py-3 hover:bg-teal-400 transition"
+        >
+          Buy Now
+        </button>
+
+        <p class="mt-2 text-xs opacity-60 text-center">
+          By checking out, you agree to our Terms & Privacy Policy.
+        </p>
+      </div>
+    </aside>
+
+    <!-- PAGE -->
+    <main class="mx-auto max-w-7xl px-4 py-10">
+      <!-- Header -->
+      <div
+        class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4"
+      >
+        <div>
+          <p class="text-xs uppercase tracking-[0.25em] opacity-70">Catalog</p>
+          <h1 class="mt-2 text-3xl sm:text-4xl font-semibold">Products</h1>
+          <p class="mt-2 text-sm opacity-70 max-w-2xl">
+            Advanced filters like Dribbble/Behance: gender, brand, price,
+            rating, color, style + sort + quick add to cart.
+          </p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-2 sm:items-center">
+          <button
+            id="btnOpenFilters"
+            class="lg:hidden px-4 py-2 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 hover:bg-slate-100 dark:hover:bg-slate-900 text-sm font-semibold"
+          >
+            <i class="bx bx-filter-alt"></i> Filters
+          </button>
+
+          <select
+            id="sortSelect"
+            class="px-4 py-2 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 text-sm outline-none focus:ring-2 focus:ring-teal-400"
+          >
+            <option value="featured">Sort: Featured</option>
+            <option value="popular">Sort: Popular</option>
+            <option value="price_low">Price: Low to High</option>
+            <option value="price_high">Price: High to Low</option>
+            <option value="rating_high">Rating: High to Low</option>
+            <option value="az">Name: A → Z</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Active chips -->
+      <div class="mt-5 flex flex-wrap items-center gap-2">
+        <div id="activeChips" class="flex flex-wrap gap-2"></div>
+        <button
+          id="btnClearAll"
+          class="hidden px-3 py-2 rounded-2xl text-xs font-semibold border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-900"
+        >
+          Clear all
+        </button>
+      </div>
+
+      <!-- Layout -->
+      <div class="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <!-- Sidebar -->
+        <aside class="lg:col-span-4 xl:col-span-3">
+          <div
+            id="filtersCard"
+            class="rounded-[2rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 shadow-sm overflow-hidden"
+          >
+            <div
+              class="p-5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between"
+            >
+              <div>
+                <p class="font-semibold">Filters</p>
+                <p class="text-xs opacity-70">Narrow down your vibe</p>
+              </div>
+              <button
+                id="btnCloseFilters"
+                class="lg:hidden p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900"
+                aria-label="Close filters"
+              >
+                <i class="bx bx-x text-2xl"></i>
+              </button>
+            </div>
+
+            <div class="p-5 space-y-6">
+              <!-- Query search (page local) -->
+              <div>
+                <label class="text-sm font-semibold">Search</label>
+                <div class="mt-2 relative">
+                  <i
+                    class="bx bx-search absolute left-3 top-1/2 -translate-y-1/2 opacity-60 text-xl"
+                  ></i>
+                  <input
+                    id="qInput"
+                    class="w-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 px-10 py-3 text-sm outline-none focus:ring-2 focus:ring-teal-400"
+                    placeholder="Search in products..."
+                  />
+                </div>
+              </div>
+
+              <!-- Gender -->
+              <div>
+                <p class="text-sm font-semibold">Gender</p>
+                <div class="mt-3 grid grid-cols-2 gap-2 text-sm">
+                  <label
+                    class="flex items-center gap-2 p-3 rounded-2xl border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900/30"
+                  >
+                    <input
+                      type="checkbox"
+                      class="genderChk accent-teal-500"
+                      value="male"
+                    />
+                    <span>Male</span>
+                  </label>
+                  <label
+                    class="flex items-center gap-2 p-3 rounded-2xl border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900/30"
+                  >
+                    <input
+                      type="checkbox"
+                      class="genderChk accent-teal-500"
+                      value="female"
+                    />
+                    <span>Female</span>
+                  </label>
+                  <label
+                    class="flex items-center gap-2 p-3 rounded-2xl border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900/30"
+                  >
+                    <input
+                      type="checkbox"
+                      class="genderChk accent-teal-500"
+                      value="boys"
+                    />
+                    <span>Boys</span>
+                  </label>
+                  <label
+                    class="flex items-center gap-2 p-3 rounded-2xl border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900/30"
+                  >
+                    <input
+                      type="checkbox"
+                      class="genderChk accent-teal-500"
+                      value="girls"
+                    />
+                    <span>Girls</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Brand -->
+              <div>
+                <div class="flex items-center justify-between">
+                  <p class="text-sm font-semibold">Brand</p>
+                  <button
+                    id="btnBrandAll"
+                    class="text-xs font-semibold text-teal-700 dark:text-teal-300 hover:opacity-80"
+                  >
+                    Select all
+                  </button>
+                </div>
+                <div id="brandList" class="mt-3 space-y-2 text-sm"></div>
+              </div>
+
+              <!-- Price -->
+              <div>
+                <p class="text-sm font-semibold">Price</p>
+                <div class="mt-3 grid grid-cols-2 gap-2">
+                  <div>
+                    <label class="text-xs opacity-70">Min</label>
+                    <input
+                      id="priceMin"
+                      type="number"
+                      min="0"
+                      class="mt-1 w-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-teal-400"
+                      placeholder="0"
+                    />
+                  </div>
+                  <div>
+                    <label class="text-xs opacity-70">Max</label>
+                    <input
+                      id="priceMax"
+                      type="number"
+                      min="0"
+                      class="mt-1 w-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-teal-400"
+                      placeholder="9999"
+                    />
+                  </div>
+                </div>
+                <div
+                  class="mt-3 flex items-center justify-between text-xs opacity-70"
+                >
+                  <span id="priceHint">Set your range</span>
+                  <button
+                    id="btnPriceReset"
+                    class="font-semibold hover:opacity-90"
+                  >
+                    Reset
+                  </button>
+                </div>
+              </div>
+
+              <!-- Rating -->
+              <div>
+                <p class="text-sm font-semibold">Rating</p>
+                <div class="mt-3 grid grid-cols-2 gap-2 text-sm">
+                  <button
+                    data-minrate="4.5"
+                    class="rateBtn px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900/30 text-left"
+                  >
+                    ⭐ 4.5+
+                  </button>
+                  <button
+                    data-minrate="4.0"
+                    class="rateBtn px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900/30 text-left"
+                  >
+                    ⭐ 4.0+
+                  </button>
+                  <button
+                    data-minrate="3.5"
+                    class="rateBtn px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900/30 text-left"
+                  >
+                    ⭐ 3.5+
+                  </button>
+                  <button
+                    data-minrate="0"
+                    class="rateBtn px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900/30 text-left"
+                  >
+                    Any
+                  </button>
+                </div>
+              </div>
+
+              <!-- Colors -->
+              <div>
+                <p class="text-sm font-semibold">Colors</p>
+                <div id="colorRow" class="mt-3 flex flex-wrap gap-2"></div>
+              </div>
+
+              <!-- Styles -->
+              <div>
+                <p class="text-sm font-semibold">Style</p>
+                <div id="styleRow" class="mt-3 flex flex-wrap gap-2"></div>
+              </div>
+
+              <!-- Toggles -->
+              <div class="grid grid-cols-2 gap-2">
+                <button
+                  id="togglePopular"
+                  class="px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900/30 text-sm font-semibold text-left"
+                >
+                  🔥 Popular
+                  <div class="text-xs opacity-70 font-normal mt-1">
+                    Show trending
+                  </div>
+                </button>
+                <button
+                  id="toggleOffer"
+                  class="px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900/30 text-sm font-semibold text-left"
+                >
+                  🏷️ Offer
+                  <div class="text-xs opacity-70 font-normal mt-1">
+                    Discount picks
+                  </div>
+                </button>
+              </div>
+
+              <button
+                id="btnApplyFilters"
+                class="w-full rounded-2xl bg-teal-500 text-slate-900 font-semibold py-3 hover:bg-teal-400 transition"
+              >
+                Apply Filters
+              </button>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Products -->
+        <section class="lg:col-span-8 xl:col-span-9">
+          <!-- result row -->
+          <div
+            class="rounded-[2rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 shadow-sm p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"
+          >
+            <div class="flex items-center gap-2">
+              <span class="h-2 w-2 rounded-full bg-teal-500"></span>
+              <p class="text-sm font-semibold">
+                <span id="resultCount">0</span> results
+              </p>
+            </div>
+            <div class="flex items-center gap-2 text-xs opacity-70">
+              <i class="bx bx-info-circle"></i>
+              <span>Tip: Click a color/style chip to filter instantly.</span>
+            </div>
+          </div>
+
+          <!-- Grid -->
+          <div
+            id="productGrid"
+            class="mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"
+          ></div>
+
+          <!-- No results -->
+          <div
+            id="noResults"
+            class="hidden mt-10 rounded-[2rem] border border-dashed border-slate-300 dark:border-slate-700 p-10 text-center bg-white dark:bg-slate-950"
+          >
+            <p class="font-semibold text-lg">No products found</p>
+            <p class="text-sm opacity-70 mt-2">
+              Try removing some filters or change your search.
+            </p>
+            <button
+              id="btnNoResultsReset"
+              class="mt-5 inline-flex items-center justify-center px-6 py-3 rounded-2xl bg-slate-900 text-white font-semibold hover:opacity-90 transition"
+            >
+              Reset Filters
+            </button>
+          </div>
+
+          <!-- Load more -->
+          <div class="mt-8 flex items-center justify-center">
+            <button
+              id="btnLoadMore"
+              class="hidden px-6 py-3 rounded-2xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-900 font-semibold"
+            >
+              Load more
+            </button>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Filters drawer for mobile -->
+    <div
+      id="filtersBackdrop"
+      class="hidden fixed inset-0 z-50 bg-black/40 lg:hidden"
+    ></div>
+    <aside
+      id="filtersDrawer"
+      class="lg:hidden fixed z-50 top-0 left-0 h-full w-[360px] max-w-[92vw] -translate-x-full transition-transform duration-300 bg-white dark:bg-slate-950 border-r border-slate-200 dark:border-slate-800 overflow-auto no-scrollbar"
+    >
+      <!-- We will clone filtersCard into this drawer using JS -->
+      <div id="filtersDrawerInner"></div>
+    </aside>
+
+    <!-- FOOTER (GLOBAL - PREMIUM) -->
+    <footer
+      class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950"
+    >
+      <div class="mx-auto max-w-7xl px-4 py-14">
+        <!-- Newsletter -->
+        <div
+          class="rounded-[2rem] border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/30 p-8 sm:p-10"
+        >
+          <div
+            class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6"
+          >
+            <div>
+              <p class="text-xs uppercase tracking-[0.25em] opacity-70">
+                Newsletter
+              </p>
+              <h3 class="mt-2 text-2xl sm:text-3xl font-semibold">
+                Subscribe to FabricMuse updates
+              </h3>
+              <p class="mt-2 text-sm opacity-70">
+                Get new drops, exclusive offers, and styling tips.
+              </p>
+            </div>
+
+            <div class="flex w-full lg:w-auto gap-2">
+              <input
+                id="newsletterEmail"
+                class="flex-1 lg:w-80 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-teal-400"
+                placeholder="Email address"
+              />
+              <button
+                id="btnNewsletter"
+                class="px-5 py-3 rounded-2xl bg-slate-900 text-white font-semibold hover:opacity-90 transition"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main footer grid -->
+        <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Brand -->
+          <div>
+            <div class="flex items-center gap-2">
+              <span
+                class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-teal-500 text-slate-900 font-bold"
+                >FM</span
+              >
+              <div>
+                <p class="font-semibold text-lg leading-tight">FabricMuse</p>
+                <p class="text-xs opacity-70">Fashion Clothes Website</p>
+              </div>
+            </div>
+
+            <p class="mt-4 text-sm opacity-70">
+              Curated apparel and accessories designed to celebrate
+              individuality and creativity.
+            </p>
+
+            <!-- Socials (optional) -->
+            <div class="mt-5 flex items-center gap-2">
+              <a
+                href="#"
+                class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-900 transition"
+                aria-label="Instagram"
+              >
+                <i class="bx bxl-instagram text-xl"></i>
+              </a>
+              <a
+                href="#"
+                class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-900 transition"
+                aria-label="Facebook"
+              >
+                <i class="bx bxl-facebook text-xl"></i>
+              </a>
+              <a
+                href="#"
+                class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-900 transition"
+                aria-label="Twitter"
+              >
+                <i class="bx bxl-twitter text-xl"></i>
+              </a>
+              <a
+                href="#"
+                class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-900 transition"
+                aria-label="YouTube"
+              >
+                <i class="bx bxl-youtube text-xl"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Quick Links -->
+          <div>
+            <p class="font-semibold text-lg">Quick Links</p>
+            <div class="mt-3 space-y-2 text-sm">
+              <a
+                class="block opacity-80 hover:opacity-100 hover:text-teal-700 dark:hover:text-teal-300 transition"
+                href="index.html"
+                >Home</a
+              >
+              <a
+                class="block opacity-80 hover:opacity-100 hover:text-teal-700 dark:hover:text-teal-300 transition"
+                href="products.html"
+                >Products</a
+              >
+              <a
+                class="block opacity-80 hover:opacity-100 hover:text-teal-700 dark:hover:text-teal-300 transition"
+                href="services.html"
+                >Services</a
+              >
+              <a
+                class="block opacity-80 hover:opacity-100 hover:text-teal-700 dark:hover:text-teal-300 transition"
+                href="about.html"
+                >About</a
+              >
+              <a
+                class="block opacity-80 hover:opacity-100 hover:text-teal-700 dark:hover:text-teal-300 transition"
+                href="contact.html"
+                >Contact</a
+              >
+            </div>
+          </div>
+
+          <!-- Support -->
+          <div>
+            <p class="font-semibold text-lg">Support</p>
+            <div class="mt-3 space-y-2 text-sm">
+              <a
+                class="block opacity-80 hover:opacity-100 hover:text-teal-700 dark:hover:text-teal-300 transition"
+                href="services.html"
+                >Delivery</a
+              >
+              <a
+                class="block opacity-80 hover:opacity-100 hover:text-teal-700 dark:hover:text-teal-300 transition"
+                href="services.html"
+                >Returns</a
+              >
+              <a
+                class="block opacity-80 hover:opacity-100 hover:text-teal-700 dark:hover:text-teal-300 transition"
+                href="services.html"
+                >Payment</a
+              >
+              <a
+                class="block opacity-80 hover:opacity-100 hover:text-teal-700 dark:hover:text-teal-300 transition"
+                href="services.html"
+                >Help Center</a
+              >
+            </div>
+          </div>
+
+          <!-- Contact -->
+          <div>
+            <p class="font-semibold text-lg">Get in touch</p>
+            <div class="mt-3 space-y-2 text-sm opacity-80">
+              <p class="flex items-center gap-2">
+                <i class="bx bx-map"></i> Ahmedabad, Gujarat 382481
+              </p>
+              <p class="flex items-center gap-2">
+                <i class="bx bx-phone"></i> +91 8008146642
+              </p>
+              <p class="flex items-center gap-2">
+                <i class="bx bx-envelope"></i> creativeencode23@yahoo.com
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- BIG BRAND STRIP (your requested last section) -->
+        <div
+          class="mt-12 pt-10 border-t border-slate-200 dark:border-slate-800"
+        >
+          <div
+            class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6"
+          >
+            <div>
+              <p class="footer-brand">FabricMuse</p>
+              <p class="mt-2 text-sm opacity-70 max-w-2xl">
+                Premium fashion experience — clean design, smooth shopping, and
+                modern UI.
+              </p>
+            </div>
+
+            <div class="flex flex-wrap gap-4 text-sm opacity-80">
+              <a
+                class="hover:opacity-100 hover:text-teal-700 dark:hover:text-teal-300 transition"
+                href="#"
+                >Terms</a
+              >
+              <a
+                class="hover:opacity-100 hover:text-teal-700 dark:hover:text-teal-300 transition"
+                href="#"
+                >Privacy</a
+              >
+              <a
+                class="hover:opacity-100 hover:text-teal-700 dark:hover:text-teal-300 transition"
+                href="#"
+                >Cookies</a
+              >
+              <a
+                class="hover:opacity-100 hover:text-teal-700 dark:hover:text-teal-300 transition"
+                href="#"
+                >FAQs</a
+              >
+            </div>
+          </div>
+
+          <div
+            class="mt-6 flex flex-col sm:flex-row gap-3 items-center justify-between text-xs opacity-70"
+          >
+            <p>
+              © 2025 FabricMuse E-Commerce at Creative Encode Technologies Pvt.
+              Ltd
+            </p>
+            <p class="opacity-60">Built with ❤️ • Tailwind + JS</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Shared JS -->
+    <script src="assets/js/app.js"></script>
+    <!-- Products JS -->
+    <script src="assets/js/products.js"></script>
+  </body>
+</html>

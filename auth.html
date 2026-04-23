@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FabricMuse - Login / Register</title>
+
+    <!-- Tailwind (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              display: [
+                "ui-sans-serif",
+                "system-ui",
+                "Segoe UI",
+                "Roboto",
+                "Helvetica",
+                "Arial"
+              ]
+            }
+          }
+        },
+        darkMode: "class"
+      };
+    </script>
+
+    <!-- Icons -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Shared css -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+
+  <body
+    class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-50 selection:bg-teal-200 selection:text-slate-900"
+  >
+    <!-- Top Bar -->
+    <div class="w-full bg-slate-900 text-white dark:bg-slate-900">
+      <div
+        class="mx-auto max-w-7xl px-4 py-2 text-xs sm:text-sm flex items-center justify-between gap-3"
+      >
+        <p class="opacity-90">Secure login • Track orders • Save wishlist</p>
+        <div class="hidden sm:flex items-center gap-3 opacity-90">
+          <span class="flex items-center gap-1"
+            ><i class="bx bx-envelope"></i> creativeencode23@yahoo.com</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <header
+      class="sticky top-0 z-50 border-b border-slate-200/60 dark:border-slate-800/70 bg-white/70 dark:bg-slate-950/60 backdrop-blur"
+    >
+      <nav class="mx-auto max-w-7xl px-4">
+        <div class="h-16 flex items-center justify-between gap-3">
+          <!-- Left -->
+          <div class="flex items-center gap-3">
+            <button
+              id="btnMobileMenu"
+              class="md:hidden p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900"
+              aria-label="Open menu"
+            >
+              <i class="bx bx-menu text-2xl"></i>
+            </button>
+
+            <a href="index.html" class="flex items-center gap-2">
+              <span
+                class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-teal-500 text-slate-900 font-bold"
+                >FM</span
+              >
+              <span class="font-semibold tracking-wide text-lg"
+                >FabricMuse</span
+              >
+            </a>
+          </div>
+
+          <!-- Center -->
+          <ul class="hidden md:flex items-center gap-6 text-sm font-medium">
+            <li>
+              <a
+                class="hover:text-teal-700 dark:hover:text-teal-300 transition"
+                href="index.html"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                class="hover:text-teal-700 dark:hover:text-teal-300 transition"
+                href="products.html"
+                >Products</a
+              >
+            </li>
+            <li>
+              <a
+                class="hover:text-teal-700 dark:hover:text-teal-300 transition"
+                href="services.html"
+                >Services</a
+              >
+            </li>
+            <li>
+              <a
+                class="hover:text-teal-700 dark:hover:text-teal-300 transition"
+                href="about.html"
+                >About</a
+              >
+            </li>
+            <li>
+              <a
+                class="hover:text-teal-700 dark:hover:text-teal-300 transition"
+                href="contact.html"
+                >Contact</a
+              >
+            </li>
+          </ul>
+
+          <!-- Right -->
+          <div class="flex items-center gap-2">
+            <button
+              id="btnTheme"
+              class="p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900"
+              aria-label="Toggle theme"
+            >
+              <i id="iconTheme" class="bx bx-moon text-2xl"></i>
+            </button>
+
+            <div class="relative">
+              <button
+                id="btnProfile"
+                class="p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900"
+                aria-label="Profile"
+              >
+                <i class="bx bx-user text-2xl"></i>
+              </button>
+
+              <div
+                id="profileMenu"
+                class="hidden absolute right-0 mt-2 w-64 overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 shadow-xl"
+              >
+                <div
+                  class="p-3 border-b border-slate-200 dark:border-slate-800"
+                >
+                  <p id="profileHello" class="text-sm font-semibold">
+                    Welcome 👋
+                  </p>
+                  <p id="profileSub" class="text-xs opacity-70">
+                    Sign in to track orders
+                  </p>
+                </div>
+
+                <a
+                  id="profilePrimaryLink"
+                  class="block px-4 py-3 text-sm hover:bg-slate-100 dark:hover:bg-slate-900"
+                  href="auth.html"
+                >
+                  Login / Register
+                </a>
+
+                <a
+                  id="profileOrdersLink"
+                  class="hidden block px-4 py-3 text-sm hover:bg-slate-100 dark:hover:bg-slate-900"
+                  href="products.html"
+                >
+                  My Orders (Demo)
+                </a>
+
+                <button
+                  id="btnLogout"
+                  class="hidden w-full text-left px-4 py-3 text-sm hover:bg-slate-100 dark:hover:bg-slate-900"
+                >
+                  Logout
+                </button>
+              </div>
+            </div>
+
+            <button
+              id="btnCart"
+              class="relative p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900"
+              aria-label="Cart"
+            >
+              <i class="bx bx-shopping-bag text-2xl"></i>
+              <span
+                id="cartBadge"
+                class="hidden absolute -top-1 -right-1 text-[11px] bg-teal-500 text-slate-900 font-bold rounded-full px-1.5 py-0.5"
+                >0</span
+              >
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Mobile Menu Drawer -->
+    <div
+      id="mobileMenuBackdrop"
+      class="hidden fixed inset-0 z-50 bg-black/40"
+    ></div>
+    <aside
+      id="mobileMenu"
+      class="fixed z-50 top-0 left-0 h-full w-[320px] -translate-x-full transition-transform duration-300 bg-white dark:bg-slate-950 border-r border-slate-200 dark:border-slate-800"
+    >
+      <div
+        class="p-4 flex items-center justify-between border-b border-slate-200 dark:border-slate-800"
+      >
+        <div class="flex items-center gap-2">
+          <span
+            class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-teal-500 text-slate-900 font-bold"
+            >FM</span
+          >
+          <span class="font-semibold">FabricMuse</span>
+        </div>
+        <button
+          id="btnMobileClose"
+          class="p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900"
+          aria-label="Close menu"
+        >
+          <i class="bx bx-x text-2xl"></i>
+        </button>
+      </div>
+
+      <div class="p-4 space-y-2 text-sm">
+        <a
+          class="block px-3 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900"
+          href="index.html"
+          >Home</a
+        >
+        <a
+          class="block px-3 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900"
+          href="products.html"
+          >Products</a
+        >
+        <a
+          class="block px-3 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900"
+          href="services.html"
+          >Services</a
+        >
+        <a
+          class="block px-3 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900"
+          href="about.html"
+          >About</a
+        >
+        <a
+          class="block px-3 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900"
+          href="contact.html"
+          >Contact</a
+        >
+
+        <div class="pt-3 border-t border-slate-200 dark:border-slate-800">
+          <button
+            id="btnThemeMobile"
+            class="w-full flex items-center justify-between px-3 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900"
+          >
+            <span class="flex items-center gap-2"
+              ><i class="bx bx-moon text-xl"></i> Theme</span
+            >
+            <span class="text-xs opacity-70">Toggle</span>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- CART DRAWER -->
+    <div id="cartBackdrop" class="hidden fixed inset-0 z-50 bg-black/40"></div>
+    <aside
+      id="cartDrawer"
+      class="fixed z-50 top-0 right-0 h-full w-full sm:w-[420px] translate-x-full transition-transform duration-300 bg-white dark:bg-slate-950 border-l border-slate-200 dark:border-slate-800"
+    >
+      <div
+        class="p-4 flex items-center justify-between border-b border-slate-200 dark:border-slate-800"
+      >
+        <div>
+          <p class="font-semibold text-lg">Your Cart</p>
+          <p class="text-xs opacity-70">Login to checkout (demo)</p>
+        </div>
+        <button
+          id="btnCartClose"
+          class="p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900"
+          aria-label="Close cart"
+        >
+          <i class="bx bx-x text-2xl"></i>
+        </button>
+      </div>
+
+      <div class="p-4 h-[calc(100%-180px)] overflow-auto no-scrollbar">
+        <div
+          id="cartEmpty"
+          class="rounded-2xl border border-dashed border-slate-300 dark:border-slate-700 p-6 text-center"
+        >
+          <p class="font-semibold">Your cart is empty</p>
+          <p class="text-sm opacity-70 mt-1">Add items from Products page.</p>
+        </div>
+
+        <div id="cartItems" class="hidden space-y-3"></div>
+      </div>
+
+      <div class="p-4 border-t border-slate-200 dark:border-slate-800">
+        <div class="flex items-center justify-between text-sm">
+          <span class="opacity-70">Subtotal</span>
+          <span id="cartSubtotal" class="font-semibold">$0.00</span>
+        </div>
+        <div class="flex items-center justify-between text-sm mt-2">
+          <span class="opacity-70">Shipping</span>
+          <span class="font-semibold">Free</span>
+        </div>
+
+        <button
+          id="btnCheckout"
+          class="mt-4 w-full rounded-2xl bg-teal-500 text-slate-900 font-semibold py-3 hover:bg-teal-400 transition"
+        >
+          Buy Now
+        </button>
+        <p class="mt-2 text-xs opacity-60 text-center">
+          Demo checkout • requires login.
+        </p>
+      </div>
+    </aside>
+
+    <!-- AUTH PAGE -->
+    <main class="mx-auto max-w-7xl px-4 py-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <!-- Left promo -->
+        <section class="lg:col-span-6">
+          <div
+            class="rounded-[2rem] overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 shadow-sm"
+          >
+            <div class="relative min-h-[340px]">
+              <img
+                src="fashion/f1.jpg"
+                class="absolute inset-0 h-full w-full object-cover"
+                alt="FabricMuse"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-b from-black/65 via-black/35 to-black/80"
+              ></div>
+              <div
+                class="relative p-8 sm:p-10 text-white"
+                style="padding:7rem;"
+              >
+                <p class="text-xs uppercase tracking-[0.25em] text-white/75">
+                  FabricMuse Account
+                </p>
+                <h1
+                  class="mt-4 text-3xl sm:text-4xl font-semibold leading-tight"
+                >
+                  Login for <span class="text-teal-300">fast checkout</span> &
+                  saved favorites.
+                </h1>
+                <p class="mt-3 text-sm text-white/80 max-w-lg">
+                  This is a clean demo auth: user saved in localStorage and
+                  navbar updates instantly across pages.
+                </p>
+
+                <div class="mt-7 grid grid-cols-2 gap-3 max-w-xl">
+                  <div
+                    class="rounded-2xl bg-white/10 border border-white/15 p-4"
+                  >
+                    <p class="text-sm font-semibold">Order Tracking</p>
+                    <p class="text-xs text-white/75 mt-1">
+                      Demo status & history
+                    </p>
+                  </div>
+                  <div
+                    class="rounded-2xl bg-white/10 border border-white/15 p-4"
+                  >
+                    <p class="text-sm font-semibold">Quick Checkout</p>
+                    <p class="text-xs text-white/75 mt-1">Cart drawer flow</p>
+                  </div>
+                </div>
+
+                <div class="mt-7 flex flex-wrap gap-2 text-xs">
+                  <span
+                    class="px-3 py-2 rounded-2xl bg-white/10 border border-white/15"
+                    >No backend required</span
+                  >
+                  <span
+                    class="px-3 py-2 rounded-2xl bg-white/10 border border-white/15"
+                    >LocalStorage session</span
+                  >
+                  <span
+                    class="px-3 py-2 rounded-2xl bg-white/10 border border-white/15"
+                    >Dribbble UI vibe</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Right form -->
+        <section class="lg:col-span-6">
+          <div
+            class="rounded-[2rem] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 shadow-sm overflow-hidden"
+          >
+            <div
+              class="p-6 sm:p-8 border-b border-slate-200 dark:border-slate-800"
+            >
+              <p class="text-xs uppercase tracking-[0.25em] opacity-70">
+                Account
+              </p>
+              <h2 class="mt-2 text-2xl sm:text-3xl font-semibold">
+                Login / Register
+              </h2>
+              <p id="authHint" class="mt-2 text-sm opacity-70">
+                Continue to your previous page after login.
+              </p>
+
+              <!-- Tabs -->
+              <div class="mt-5 flex gap-2">
+                <button
+                  id="tabLogin"
+                  class="flex-1 px-4 py-3 rounded-2xl bg-slate-900 text-white font-semibold hover:opacity-90 transition"
+                >
+                  Login
+                </button>
+                <button
+                  id="tabRegister"
+                  class="flex-1 px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-900 font-semibold transition"
+                >
+                  Register
+                </button>
+              </div>
+            </div>
+
+            <div class="p-6 sm:p-8">
+              <!-- Alerts -->
+              <div
+                id="authAlert"
+                class="hidden mb-4 rounded-2xl border p-4 text-sm"
+              ></div>
+
+              <!-- LOGIN FORM -->
+              <form id="loginForm" class="space-y-4">
+                <div>
+                  <label class="text-sm font-medium">Email</label>
+                  <input
+                    id="loginEmail"
+                    type="email"
+                    required
+                    class="mt-2 w-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-teal-400"
+                    placeholder="you@example.com"
+                  />
+                </div>
+
+                <div>
+                  <label class="text-sm font-medium">Password</label>
+                  <div class="mt-2 relative">
+                    <input
+                      id="loginPass"
+                      type="password"
+                      required
+                      minlength="4"
+                      class="w-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 px-4 py-3 pr-12 text-sm outline-none focus:ring-2 focus:ring-teal-400"
+                      placeholder="••••"
+                    />
+                    <button
+                      type="button"
+                      id="toggleLoginPass"
+                      class="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900"
+                      aria-label="Show password"
+                    >
+                      <i class="bx bx-show text-xl"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="flex items-center justify-between text-sm">
+                  <label class="flex items-center gap-2">
+                    <input
+                      id="rememberMe"
+                      type="checkbox"
+                      class="accent-teal-500"
+                    />
+                    <span class="opacity-80">Remember me</span>
+                  </label>
+                  <button
+                    type="button"
+                    id="btnForgot"
+                    class="font-semibold text-teal-700 dark:text-teal-300 hover:opacity-80"
+                  >
+                    Forgot?
+                  </button>
+                </div>
+
+                <button
+                  type="submit"
+                  class="w-full rounded-2xl bg-teal-500 text-slate-900 font-semibold py-3 hover:bg-teal-400 transition"
+                >
+                  Login
+                </button>
+
+                <p class="text-xs opacity-60 text-center">
+                  Demo: any email + password (min 4 chars) works.
+                </p>
+              </form>
+
+              <!-- REGISTER FORM -->
+              <form id="registerForm" class="hidden space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="text-sm font-medium">First name</label>
+                    <input
+                      id="regFirst"
+                      required
+                      class="mt-2 w-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-teal-400"
+                      placeholder="Kushal"
+                    />
+                  </div>
+                  <div>
+                    <label class="text-sm font-medium">Last name</label>
+                    <input
+                      id="regLast"
+                      required
+                      class="mt-2 w-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-teal-400"
+                      placeholder="Thakkar"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label class="text-sm font-medium">Email</label>
+                  <input
+                    id="regEmail"
+                    type="email"
+                    required
+                    class="mt-2 w-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-teal-400"
+                    placeholder="you@example.com"
+                  />
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="text-sm font-medium">Password</label>
+                    <div class="mt-2 relative">
+                      <input
+                        id="regPass"
+                        type="password"
+                        required
+                        minlength="4"
+                        class="w-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 px-4 py-3 pr-12 text-sm outline-none focus:ring-2 focus:ring-teal-400"
+                        placeholder="Min 4 chars"
+                      />
+                      <button
+                        type="button"
+                        id="toggleRegPass"
+                        class="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900"
+                        aria-label="Show password"
+                      >
+                        <i class="bx bx-show text-xl"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div>
+                    <label class="text-sm font-medium">Confirm</label>
+                    <input
+                      id="regPass2"
+                      type="password"
+                      required
+                      minlength="4"
+                      class="mt-2 w-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-teal-400"
+                      placeholder="Repeat password"
+                    />
+                  </div>
+                </div>
+
+                <label class="flex items-start gap-2 text-sm">
+                  <input
+                    id="agree"
+                    type="checkbox"
+                    required
+                    class="accent-teal-500 mt-1"
+                  />
+                  <span class="opacity-80">
+                    I agree to the
+                    <a
+                      class="font-semibold text-teal-700 dark:text-teal-300 hover:opacity-80"
+                      href="#"
+                      >Terms</a
+                    >
+                    and
+                    <a
+                      class="font-semibold text-teal-700 dark:text-teal-300 hover:opacity-80"
+                      href="#"
+                      >Privacy</a
+                    >.
+                  </span>
+                </label>
+
+                <button
+                  type="submit"
+                  class="w-full rounded-2xl bg-slate-900 text-white font-semibold py-3 hover:opacity-90 transition"
+                >
+                  Create account
+                </button>
+
+                <p class="text-xs opacity-60 text-center">
+                  Demo register stores your profile in localStorage.
+                </p>
+              </form>
+
+              <!-- Logged in box -->
+              <div
+                id="alreadyBox"
+                class="hidden mt-6 rounded-2xl border border-teal-300 bg-teal-50 text-slate-900 p-5"
+              >
+                <p class="font-semibold">You’re already logged in ✅</p>
+                <p id="alreadyText" class="text-sm opacity-80 mt-1">
+                  Welcome back.
+                </p>
+                <div class="mt-4 flex flex-wrap gap-2">
+                  <a
+                    id="btnContinue"
+                    href="index.html"
+                    class="px-5 py-3 rounded-2xl bg-teal-500 text-slate-900 font-semibold hover:bg-teal-400 transition"
+                  >
+                    Continue
+                  </a>
+                  <button
+                    id="btnLogoutHere"
+                    class="px-5 py-3 rounded-2xl border border-slate-200 hover:bg-white/60 font-semibold"
+                  >
+                    Logout
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Shared JS -->
+    <script src="assets/js/app.js"></script>
+    <!-- Auth JS -->
+    <script src="assets/js/auth.js"></script>
+  </body>
+</html>
