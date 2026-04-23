@@ -71,6 +71,14 @@ For a smoother development experience, you can use a live server extension in yo
 
 ---
 
+## 📱 Responsive Design
+
+A unified shopping experience across all devices — from large desktop screens to compact mobile views.
+
+![FabricMuse Responsive UI](./assets/responsive-img-ui/home-ui-img.png)
+
+---
+
 ## 📌 Project Status
 
 FabricMuse is currently a complete frontend implementation with all core interface components and interactive features fully functional. Backend integration and advanced features are planned for future development.
